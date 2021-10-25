@@ -16,7 +16,7 @@ import MyPage from './pages/MyPage';
 import EditMyPage from './pages/EditMyPage';
 
 function App () {
-  console.log( 'hello') ;
+  console.log('hello') ;
 
   return (
     <Router>
