@@ -34,4 +34,15 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize
 db.Sequelize = Sequelize
 
+// associations 설정
+const { user, post, usersPost, comment } = sequelize.models
+comment.belongsTo(user)
+user.hasMany(comment)
+comment.belongsTo(post)
+post.hasMany(comment)
+usersPost.belongsTo(user)
+user.hasMany(usersPost)
+usersPost.belongsTo(post)
+post.hasMany(usersPost)
+
 module.exports = db
