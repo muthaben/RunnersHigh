@@ -16,7 +16,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.send('hello world')
+  res.send('hello RunnersHigh')
 })
 // user
 app.post('/login', controllers.login)
