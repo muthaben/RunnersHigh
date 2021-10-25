@@ -1,0 +1,14 @@
+
+
+.container {
+  width: 1170px;
+  height: 95px;
+  display: flex;
+  align-items: center;
+  background-color: yellow;
+}
+
+.container__logo {
+  font-family: "HelloMornin";
+  font-size: large;
+}/*# sourceMappingURL=Navbar.css.map */
