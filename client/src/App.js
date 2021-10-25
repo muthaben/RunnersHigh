@@ -14,19 +14,14 @@ import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import MyPage from './pages/MyPage';
 import EditMyPage from './pages/EditMyPage';
-
+import Navbar from './components/Navbar';
 function App () {
   console.log('hello') ;
 
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/home'>
-          <Home />
-        </Route>
-      </Switch>
-      
-    </Router>
+    <div>
+    <Navbar/>
+    </div>
   );
 }
 

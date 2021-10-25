@@ -1,0 +1,15 @@
+@import './variables/variables.scss';
+
+.container {
+  width: 1170px;
+  height: 95px;
+  display:flex;
+  align-items: center;
+  background-color: yellow;
+  justify-content: center;
+}
+
+.container__logo {
+  font-family: "HelloMornin";
+  font-size: large;
+}
