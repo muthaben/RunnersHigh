@@ -1,1 +1,9 @@
-{"version":3,"sources":["variables.scss"],"names":[],"mappings":"AAAA;EACE,0BAAA;EACA,wDAAA;AACF","file":"variables.css"}
+{
+    "version": 3,
+    "mappings": "AAAA,UAAU;EACR,WAAW,EAAE,aAAa;EAC1B,GAAG,EAAE,gCAAgC,CAAC,kBAAkB",
+    "sources": [
+        "variables.scss"
+    ],
+    "names": [],
+    "file": "variables.css"
+}
