@@ -22,9 +22,13 @@ function App () {
   return (
     <>
       <div className='page_container'>
-        <Router className='wrep_container'>
+        <Router className='wrap_container'>
           <Navbar />
-
+          <Switch>
+            <Route path='/main' exact component={MainPage} />
+            <Route path='/create' exact component={CreatePost} />
+            <Route path='/editpost' exact component={EditPost} />
+          </Switch>
         </Router>
       </div>
       <Footer />
