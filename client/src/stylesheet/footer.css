@@ -10,20 +10,14 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  min-height: 95px;
   color: #958bcf;
+  height: 100%;
+  position: relative;
 }
 
 .container_footer {
   width: 90%;
-  height: 95px;
+  min-height: 95px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -45,6 +39,8 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  bottom: 0;
+  position: absolute;
 }
 
 .footer a {

@@ -16,19 +16,24 @@ import MyPage from './pages/MyPage'
 import EditMyPage from './pages/EditMyPage'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import DetailEditPost from './pages/DetailEditPost'
 function App () {
   console.log('hello')
 
   return (
     <>
       <div className='page_container'>
-        <Router className='wrap_container'>
+        <Router>
           <Navbar />
           <Switch>
+            <Route path='/' exact component={Home} />
             <Route path='/main' exact component={MainPage} />
             <Route path='/create' exact component={CreatePost} />
             <Route path='/editpost' exact component={EditPost} />
+            <Route path='/detail' exact component={DetailPost} />
+            <Route path='/detailedit' exact component={DetailEditPost} />
           </Switch>
+
         </Router>
       </div>
       <Footer />
