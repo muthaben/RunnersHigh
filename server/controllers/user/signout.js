@@ -1,5 +1,5 @@
 // 회원탈퇴
-const { isAuthorized } = require('../../functions')
+const { isAuthorized } = require('../../functions/token')
 const { user } = require('../../models')
 
 module.exports = async (req, res) => {
