@@ -1,13 +1,17 @@
 import React from 'react'
 import Comment from '../components/Comment'
-import '../stylesheet/detailpost.css'
-function DetailPost () {
+function DetailEditPost () {
   return (
     <div className='detail_container'>
       <h1 className='detail_title'>title</h1>
       <div className='detail_span'>
         <span>작성자</span>
-        <span>작성일</span>
+        <span>
+          <button>수정</button>
+          <button>삭제</button>
+          작성일
+        </span>
+
       </div>
       <div className='detail_content'>
         <div className='detail_image'>이미지</div>
@@ -19,4 +23,4 @@ function DetailPost () {
   )
 }
 
-export default DetailPost
+export default DetailEditPost

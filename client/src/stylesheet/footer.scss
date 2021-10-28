@@ -6,15 +6,14 @@
 .footer {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  min-height: 95px;
   color: #958bcf;
+  height: 100%;
+  position: relative;
 }
 
 .container_footer {
   width: 90%;
-  height: 95px;
+  min-height: 95px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,6 +26,8 @@
 
 .footer .copyright {
   display: flex;
+  bottom: 0;
+  position: absolute;
 }
 .footer a {
   text-decoration: none;
