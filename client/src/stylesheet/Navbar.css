@@ -2,31 +2,18 @@
   font-family: "HelloMornin";
   src: url("./fonts/Hello_Mornin.ttf") format("truetype");
 }
-
 .navbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
   width: 90%;
   height: 95px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   border-bottom: solid 3px #d0e8fb;
 }
 
@@ -39,6 +26,12 @@
 .container .navbar_link {
   margin-right: 50px;
   font-size: 15px;
+  display: flex;
+}
+.container .navbar_link div {
+  margin: 10px;
+  text-decoration: none;
+  color: #8172d5;
 }
 
 .container__logo {
@@ -49,5 +42,4 @@
 
 .container .runners_High {
   color: #958bcf;
-}
-/*# sourceMappingURL=Navbar.css.map */
+}/*# sourceMappingURL=Navbar.css.map */

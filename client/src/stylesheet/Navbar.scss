@@ -26,6 +26,13 @@
 .container .navbar_link {
   margin-right: 50px;
   font-size: 15px;
+  display: flex;
+  
+  div {
+    margin: 10px;
+  text-decoration: none;
+  color: #8172d5;
+  }
 }
 .container__logo {
   font-family: "HelloMornin";
