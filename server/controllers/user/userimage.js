@@ -1,6 +1,6 @@
-// 게시물 삭제
+// 회원 이미지 수정
 
-const { post } = require('../../models')
+const { user } = require('../../models')
 const { isAuthorized } = require('../../functions/token')
 
 module.exports = async (req, res) => {
@@ -9,11 +9,9 @@ module.exports = async (req, res) => {
   if (!accessTokenData) {
     res.status(401).send({ message: '유효하지 않은 토큰입니다' })
   } else {
-    await post.destroy({
-      where: {
-        id: req.params.postid
-      }
-    })
-    res.status(200).send({ message: '게시물 삭제에 성공했습니다' })
+    await user.update({ image_url: req.file.location },
+      { where: { id: accessTokenData.id } }
+    )
+    res.status(201).send({ message: '회원 이미지 수정에 성공했습니다' })
   }
 }
