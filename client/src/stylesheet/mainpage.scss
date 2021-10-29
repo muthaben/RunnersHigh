@@ -51,7 +51,9 @@
   justify-content: center;
   align-items: center;
   transform: translate(730px, -300px);
-  position: relative;
+  button {
+    width: 50px;
+  }
 }
 
 // <svg xmlns="http://www.w3.org/2000/svg" width="373.383" height="395.216" viewBox="0 0 373.383 395.216">
