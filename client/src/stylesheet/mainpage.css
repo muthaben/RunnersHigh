@@ -94,6 +94,9 @@
           align-items: center;
   -webkit-transform: translate(730px, -300px);
           transform: translate(730px, -300px);
-  position: relative;
+}
+
+.main_serch_div button {
+  width: 50px;
 }
 /*# sourceMappingURL=mainpage.css.map */

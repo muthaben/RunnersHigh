@@ -11,12 +11,12 @@
       -ms-flex-pack: center;
           justify-content: center;
   color: #958bcf;
-  height: 100%;
+  height: 95px;
   position: relative;
 }
 
 .container_footer {
-  width: 90%;
+  width: 100%;
   min-height: 95px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -36,9 +36,6 @@
 }
 
 .footer .copyright {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   bottom: 0;
   position: absolute;
 }

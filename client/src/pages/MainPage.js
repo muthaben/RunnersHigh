@@ -28,6 +28,7 @@ function MainPage () {
         </svg>
       </div>
     </div>
+
   )
 }
 
