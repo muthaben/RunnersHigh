@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
         longitude: req.body.longitude,
         userId: accessTokenData.id
       })
-      res.status(201).send({ message: '게시물 작성에 성공했습니다' })
+      res.status(201).send({ message: '게시물 작성에 성공했습니다,' })
     }
   }
 }
