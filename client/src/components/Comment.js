@@ -1,6 +1,6 @@
 import React from 'react'
 import '../stylesheet/comment.css'
-import Footer from './Footer'
+// import Footer from './Footer'
 function comment () {
   return (
     <div className='comment_container'>
@@ -43,7 +43,7 @@ function comment () {
         </div>
         <div className='comment_comment'>댓글이다~~~~~~~~~~~~</div>
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

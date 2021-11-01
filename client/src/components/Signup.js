@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import '../stylesheet/signup.css'
 
 function Signup ({ ChangeSelect }) {
