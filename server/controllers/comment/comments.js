@@ -1,7 +1,7 @@
 // 댓글 조회
 // 1. req,params.postid가 들어온다
 // 2. 그러면 postid로 comments테이블에 postid를 기준으로 데이테를 뽑아준다
-
+// postedit 페이지로 넘어갈때 이 API 재사용
 const { comment, post, user } = require('../../models')
 
 module.exports = async (req, res) => {
