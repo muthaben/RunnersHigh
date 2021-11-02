@@ -94,7 +94,7 @@
 
 .landing_container .landing_comment1 {
   height: 100%;
-  width: 120%;
+  width: 100%;
   font-size: 40px;
   font-weight: 900;
   padding-bottom: 20px;
@@ -143,14 +143,14 @@
 
 .landing2_container .landing2_text .landing2_comment1 {
   height: 100%;
-  width: 120%;
+  width: 100%;
   font-size: 30px;
   padding-bottom: 20px;
 }
 
 .landing2_container .landing2_text .landing2_comment2 {
   height: 100%;
-  width: 120%;
+  width: 100%;
   font-size: 40px;
   font-weight: 900;
   padding: 40px;
@@ -187,7 +187,7 @@
 
 .landing3_container .landing3_text .landing3_comment1 {
   height: 100%;
-  width: 120%;
+  width: 100%;
   font-size: 40px;
   font-weight: 900;
   padding-bottom: 20px;
@@ -195,7 +195,7 @@
 
 .landing3_container .landing3_text .landing2_comment2 {
   height: 100%;
-  width: 120%;
+  width: 100%;
   font-size: 40px;
   font-weight: 900;
   padding-bottom: 20px;
@@ -242,7 +242,7 @@
 
 .landing4_container .landing4_text .landing4_comment1 {
   height: 100%;
-  width: 120%;
+  width: 100%;
   font-size: 40px;
   font-weight: 900;
   padding-bottom: 20px;
@@ -250,6 +250,11 @@
 
 .landing4_container .landing4_text .landing4_comment2 {
   font-size: 30px;
+}
+
+.landing5_wrap {
+  width: 100%;
+  position: relative;
 }
 
 .landing5_container {
@@ -266,13 +271,28 @@
   height: 700px;
   padding-left: 80px;
   padding-right: 80px;
+  background: url("./image/RunBackground.jpg") 0 repeat-x;
+  background-size: cover;
+  background-position: center;
+  -webkit-animation: movebg 6s linear infinite;
+          animation: movebg 6s linear infinite;
 }
 
-.landing5_container .landing5_comment1 {
-  height: 100%;
-  width: 120%;
-  font-size: 40px;
-  font-weight: 900;
-  padding-bottom: 20px;
+@-webkit-keyframes movebg {
+  0% {
+    background-position: 0 center;
+  }
+  100% {
+    background-position: -1500 center;
+  }
+}
+
+@keyframes movebg {
+  0% {
+    background-position: 0 center;
+  }
+  100% {
+    background-position: -1500 center;
+  }
 }
 /*# sourceMappingURL=landing.css.map */

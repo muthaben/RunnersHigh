@@ -36,10 +36,10 @@ function LandingPage1 () {
         />
       ))}
       <div className='landing1_text'>
-        <div className='text1'>
+        <div className='text1 gs_reveal'>
           Runner's High
         </div>
-        <div className='text1'>
+        <div className='text1 gs_reveal'>
           함께 달리세요.
         </div>
         {/* <div className='text1'>
