@@ -6,9 +6,11 @@
 .footer {
   display: flex;
   justify-content: center;
-  color: #958bcf;
+  color: black;
   height: 95px;
   position: relative;
+  padding-left: 80px;
+  padding-right: 80px;
 }
 
 .container_footer {
@@ -30,7 +32,7 @@
 }
 .footer a {
   text-decoration: none;
-  color: #958bcf;
+  color: black;
 }
 .footer_title {
   text-decoration: underline;

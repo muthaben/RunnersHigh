@@ -1,21 +1,50 @@
-import React from 'react'
 import '../../stylesheet/landing.css'
+import React, { useState, useEffect } from 'react'
+import { useTransition, animated } from '@react-spring/web'
+
 function LandingPage1 () {
+  const slides = [
+    'https://images.pexels.com/photos/5319384/pexels-photo-5319384.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/40751/running-runner-long-distance-fitness-40751.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/878151/pexels-photo-878151.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/39308/runners-silhouettes-athletes-fitness-39308.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    'https://images.pexels.com/photos/1564470/pexels-photo-1564470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+  ]
+
+  const [items, setItems] = useState(0)
+  const transitions = useTransition(items, {
+    key: items,
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: { duration: 3000 }
+  })
+
+  useEffect(() => {
+    const check = setInterval(() => setItems(state => (state + 1) % slides.length), 4000)
+    return () => clearTimeout(check)
+  }, [])
   return (
     <div className='landing1_container'>
-      <img
-        className='landing1_img' src='https://image.freepik.com/free-vector/marathon-abstract-concept-vector-illustration-running-competition-active-lifestyle-long-distance-race-athletic-workout-sports-training-street-fitness-sprint-winner-abstract-metaphor_335657-4262.jpg'
-      />
+      {transitions((style, i) => (
+        <animated.div
+          className='bg'
+          style={{
+            ...style,
+            backgroundImage: `url(${slides[i]})`
+          }}
+        />
+      ))}
       <div className='landing1_text'>
         <div className='text1'>
           Runner's High
         </div>
         <div className='text1'>
-          함께
+          함께 달리세요.
         </div>
-        <div className='text1'>
+        {/* <div className='text1'>
           달리세요.
-        </div>
+        </div> */}
       </div>
     </div>
   )
