@@ -20,6 +20,7 @@
   background-color: white;
   -webkit-box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
           box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1;
 }
 
 .container {
