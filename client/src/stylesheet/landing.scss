@@ -83,7 +83,7 @@
 
   .landing_comment1 {
     height: 100%;
-    width: 120%;
+    width: 100%;
     font-size: 40px;
     font-weight: 900;
     padding-bottom: 20px;
@@ -118,13 +118,13 @@
     padding-left: 5px;
     .landing2_comment1 {
       height: 100%;
-      width: 120%;
+      width: 100%;
       font-size: 30px;
       padding-bottom: 20px;
     }
     .landing2_comment2 {
       height: 100%;
-      width: 120%;
+      width: 100%;
       font-size: 40px;
       font-weight: 900;
       padding: 40px;
@@ -151,14 +151,14 @@
 
     .landing3_comment1 {
       height: 100%;
-      width: 120%;
+      width: 100%;
       font-size: 40px;
       font-weight: 900;
       padding-bottom: 20px;
     }
     .landing2_comment2 {
       height: 100%;
-      width: 120%;
+      width: 100%;
       font-size: 40px;
       font-weight: 900;
       padding-bottom: 20px;
@@ -194,7 +194,7 @@
 
     .landing4_comment1 {
       height: 100%;
-      width: 120%;
+      width: 100%;
       font-size: 40px;
       font-weight: 900;
       padding-bottom: 20px;
@@ -205,6 +205,12 @@
   }
 }
 //----------------------------------------------
+
+.landing5_wrap {
+  width: 100%;
+  position: relative;
+}
+
 .landing5_container {
   display: flex;
   justify-content: center;
@@ -215,12 +221,29 @@
   padding-left: 80px;
   padding-right: 80px;
   // background-color: rgba(56, 73, 85, 0.6);
+  background: url("./image/RunBackground.jpg") 0 repeat-x;
+  background-size: cover;
+  background-position: center;
+  animation: movebg 6s linear infinite;
 
-  .landing5_comment1 {
-    height: 100%;
-    width: 120%;
-    font-size: 40px;
-    font-weight: 900;
-    padding-bottom: 20px;
+  @keyframes movebg {
+    0% {
+      background-position: 0 center;
+    }
+    100% {
+      background-position: -1500 center;
+    }
   }
+
+  // .landing5_comment1 {
+  //   height: 100%;
+  //   width: 100%;
+  //   font-size: 40px;
+  //   font-weight: 900;
+  //   padding-bottom: 20px;
+  // }
+  // button {
+  //   height: 50px;
+  //   width: 350px;
+  // }
 }
