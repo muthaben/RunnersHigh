@@ -38,6 +38,7 @@ function App () {
           <Route path='/detailedit' exact component={DetailEditPost} />
           <Route path='/loginmodal' exact component={LoginModal} />
           <Route path='/chat' exact component={Chat} />
+          <Route path='/mypage' exact component={MyPage} />
         </Switch>
         {/* <Footer /> */}
       </Router>

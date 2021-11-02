@@ -1,0 +1,51 @@
+.mypage_container {
+  margin-top: 95px;
+  height: 100%;
+  display: flex;
+
+  .mypage_profile {
+    border: red solid 3px;
+    width: 20%;
+    height: 600px;
+
+    div {
+      height: 30%;
+    }
+  }
+
+  .mypage_cards {
+    border: steelblue solid 3px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    height: 272px;
+    width: 312px;
+    border: 1px solid beige;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+    // z-index: 1;
+    margin-bottom: 10rem;
+
+    .mypage_image {
+      // margin-top: 20px;
+      align-self: center;
+      height: 50%;
+      min-width: 100%;
+    }
+    .mypage_text {
+      height: 30%;
+      min-width: 100%;
+      margin-left: 20px;
+      align-self: flex-start;
+    }
+    .mypage_footer {
+      display: flex;
+      justify-content: space-between;
+      min-height: 20%;
+    }
+    .mypage_footer span {
+      align-self: flex-end;
+      margin: 20px;
+    }
+  }
+}
