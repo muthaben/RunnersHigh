@@ -3,11 +3,14 @@
   src: url("./fonts/Hello_Mornin.ttf") format("truetype");
 }
 
+@import "./variables/variables.scss";
 .footer {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   color: black;
-  height: 95px;
+  height: 120px;
   position: relative;
   padding-left: 80px;
   padding-right: 80px;
@@ -19,7 +22,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: solid 3px #d0e8fb;
+  
+  padding-bottom: 10px;
 }
 .runners_High_footer {
   font-family: "HelloMornin";
@@ -29,10 +33,14 @@
 .footer .copyright {
   bottom: 0;
   position: absolute;
+  
 }
 .footer a {
   text-decoration: none;
   color: black;
+  &:hover{
+    color:$color-hovercolor-sky;
+  }
 }
 .footer_title {
   text-decoration: underline;

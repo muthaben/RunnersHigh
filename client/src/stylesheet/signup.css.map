@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "ACOA,OAAO,CAAC,6DAAI;ADLZ,AAAA,iBAAiB,CAAC;EAChB,UAAU,EAAE,MAAM;EAClB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,KAAK,EAAE,GAAG;CACX;;AAID,AAAA,YAAY,CAAC;EACX,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,MAAM,EAAE,IAAI;CACb",
-    "sources": [
-        "signup.scss",
-        "variables/variables.scss"
-    ],
-    "names": [],
-    "file": "signup.css"
-}
+{"version":3,"sources":["variables/variables.scss","signup.scss"],"names":[],"mappings":"AAOQ,qEAAA;ACLR;EACE,kBAAA;EACA,aAAA;EACA,sBAAA;EACA,UAAA;AAAF;;AAKA;EACE,aAAA;EACA,sBAAA;EACA,YAAA;AAFF","file":"signup.css"}

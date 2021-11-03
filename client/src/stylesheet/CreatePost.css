@@ -1,14 +1,17 @@
 .create_container {
   display: flex;
   height: 100vh;
+  padding-top: 110px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
 }
 
 .create_form {
-  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%;
+  width: 50%;
 }
 .create_form .create_title {
   width: 90%;
@@ -34,6 +37,7 @@
   height: 200px;
   align-self: center;
   width: 90%;
+  padding-bottom: 15px;
 }
 .create_form .create_main_text textarea {
   box-sizing: border-box;
@@ -55,6 +59,7 @@
   width: 90%;
   height: 400px;
   box-sizing: border-box;
+  padding-bottom: 15px;
 }
 .create_form .create_map div {
   width: 100%;
@@ -63,6 +68,7 @@
 }
 .create_form .create_button {
   align-self: flex-end;
+  margin-right: 20px;
   height: 5%;
   width: 10%;
 }/*# sourceMappingURL=CreatePost.css.map */

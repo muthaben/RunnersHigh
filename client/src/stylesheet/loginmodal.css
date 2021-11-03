@@ -12,10 +12,10 @@
 }
 
 .loginmodal_container {
-  width: 40%;
+  width: 400px;
   border: solid 1px #a7a1a1;
   border-radius: 10px;
-  height: 60%;
+  height: 500px;
   justify-content: center;
   flex-direction: column;
   display: flex;
@@ -23,4 +23,11 @@
   z-index: 20;
   box-shadow: -3px -3px 7px #ffffff73;
   background: white;
+  position: relative;
+}
+
+.loginmodal_icon {
+  position: absolute;
+  top: 0;
+  right: 0;
 }/*# sourceMappingURL=loginmodal.css.map */
