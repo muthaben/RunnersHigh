@@ -1,4 +1,4 @@
-// @import "./variables/variables.scss";
+@import "./variables/variables.scss";
 
 @font-face {
   font-family: "HelloMornin";
@@ -27,20 +27,30 @@
 }
 .container a {
   margin: 10px;
-  text-decoration: none;
+  // text-decoration: none;
   color: black;
+  &:hover{
+    color:$color-hovercolor-sky;
+  }
 }
 .container .navbar_link {
   margin-right: 50px;
   font-size: 15px;
   display: flex;
+  
 
   div {
     margin: 10px;
-    text-decoration: none;
+    
     color: black;
+    &:hover{
+      cursor: pointer;
+      color:$color-hovercolor-sky;
+    }
   }
 }
+
+
 .container__logo {
   font-family: "HelloMornin";
   margin-left: 50px;

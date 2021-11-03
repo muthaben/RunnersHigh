@@ -1,3 +1,4 @@
+@import url(https://use.fontawesome.com/releases/v5.15.3/css/all.css);
 @font-face {
   font-family: "HelloMornin";
   src: url("./fonts/Hello_Mornin.ttf") format("truetype");
@@ -5,8 +6,10 @@
 .footer {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   color: black;
-  height: 95px;
+  height: 120px;
   position: relative;
   padding-left: 80px;
   padding-right: 80px;
@@ -18,7 +21,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: solid 3px #d0e8fb;
+  padding-bottom: 10px;
 }
 
 .runners_High_footer {
@@ -34,6 +37,9 @@
 .footer a {
   text-decoration: none;
   color: black;
+}
+.footer a:hover {
+  color: #a5eaf6;
 }
 
 .footer_title {
