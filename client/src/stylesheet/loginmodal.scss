@@ -9,19 +9,24 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  z-index: 19;
 }
 
 .loginmodal_container {
-  width: 480px;
+  width: 40%;
   border: solid 1px rgb(167, 161, 161);
   border-radius: 10px;
-  height: 500px;
+  height: 60%;
   justify-content: center;
+  flex-direction: column;
   display: flex;
   align-items: center;
-  
+  z-index: 20;
   
   box-shadow: -3px -3px 7px #ffffff73;
   background: white;
+}
+
+.loginmodal_icon{
+  
 }
