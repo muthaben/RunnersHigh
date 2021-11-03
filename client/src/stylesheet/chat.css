@@ -2,15 +2,9 @@
 .chat_container {
   height: 100vh;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .chat_container2 {
@@ -18,8 +12,6 @@
   border-radius: 10px;
   width: 80%;
   height: 70%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 
@@ -38,19 +30,13 @@
 }
 
 .chat_room_detail {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 
 .chat_room_image {
   font-size: 20px;
 }
-
 .chat_room_image span {
   font-size: 5px;
   margin: 20px;
@@ -64,17 +50,14 @@
 .chat_room_post {
   height: 60px;
 }
-
 .chat_room_post input {
   width: 90%;
   height: 100%;
   border: solid 2px #d0e8fb;
 }
-
 .chat_room_post button {
   width: 10%;
   height: 100%;
   border: solid 2px #d0e8fb;
   background: #d0e8fb;
-}
-/*# sourceMappingURL=chat.css.map */
+}/*# sourceMappingURL=chat.css.map */

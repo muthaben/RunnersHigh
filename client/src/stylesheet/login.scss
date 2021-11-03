@@ -12,22 +12,15 @@
 .login_form {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin : 20px;
-  input {
-    height: 40px;
-    margin : 10px;
-    border: 0;
-    border-bottom: solid 1px black;
+  div {
+    width:100%;
   }
 }
 
-.login_btn {
-  align-self: center;
-  width : 358px;
-  height : 40px;
-  margin: 10px;
 
-}
+
 
 .login_tosignup {
   
