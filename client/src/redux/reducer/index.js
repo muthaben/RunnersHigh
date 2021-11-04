@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
-// import user from './user_reducer'
+import userReducer from './user_Reducer'
 
 const rootReducer = combineReducers({
-  // 각각의 reducer들을 하나로 합쳐줌 store개념(?)
-  // user
+  userReducer
 })
 
 export default rootReducer
