@@ -35,12 +35,20 @@ db.sequelize = sequelize
 db.Sequelize = Sequelize
 
 // associations 설정
-const { user, post, comment } = sequelize.models
+const { user, post, comment, room, userroom, chatting } = sequelize.models
 comment.belongsTo(user)
 user.hasMany(comment)
 comment.belongsTo(post)
 post.hasMany(comment)
 post.belongsTo(user)
 user.hasMany(post)
+userroom.belongsTo(user)
+user.hasMany(userroom)
+userroom.belongsTo(room)
+room.hasMany(userroom)
+chatting.belongsTo(user)
+user.hasMany(chatting)
+chatting.belongsTo(room)
+room.hasMany(chatting)
 
 module.exports = db
