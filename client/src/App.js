@@ -19,7 +19,6 @@ import Footer from './components/Footer'
 import DetailEditPost from './pages/DetailEditPost'
 import LoginModal from './components/LoginModal'
 function App () {
-  console.log('hello')
   const [showModal, setShowModal] = useState(false)
   const OpenModal = () => {
     setShowModal(!showModal)
