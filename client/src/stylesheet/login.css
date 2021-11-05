@@ -6,6 +6,11 @@
   width: 60%;
 }
 
+p {
+  font-size: small;
+  color: red;
+}
+
 .login_form {
   display: flex;
   flex-direction: column;
@@ -14,4 +19,22 @@
 }
 .login_form div {
   width: 100%;
+}
+
+.login_social {
+  display: flex;
+}
+.login_social div {
+  background: url("./image/kakao_login_medium_narrow.png") no-repeat;
+  background-position: center;
+  margin: 0.5rem;
+  transition: all 0.2s;
+  outline: none;
+  width: 100%;
+  height: 3rem;
+}
+
+.login_tosignup:hover {
+  cursor: pointer;
+  color: #a5eaf6;
 }/*# sourceMappingURL=login.css.map */

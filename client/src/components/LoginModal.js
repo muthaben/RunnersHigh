@@ -3,8 +3,8 @@ import Signup from './Signup'
 import '../stylesheet/loginmodal.css'
 import { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close'
-import { fontSize } from '@mui/system'
-function LoginModal ({ showModal, OpenModal }) {
+
+function LoginModal ({ showModal, OpenModal, isLogin }) {
   const [selectLogin, setSelectLogin] = useState(false)
 
   const ChangeSelect = () => {
@@ -23,7 +23,7 @@ function LoginModal ({ showModal, OpenModal }) {
             <CloseIcon className='loginmodal_icon' onClick={doubleFunction} style={{ fontSize: 30 }} />
             {selectLogin
               ? <Signup ChangeSelect={ChangeSelect} />
-              : <Login ChangeSelect={ChangeSelect} />}
+              : <Login ChangeSelect={ChangeSelect} OpenModal={OpenModal} isLogin={isLogin} />}
           </div>
           </div>
         : null}

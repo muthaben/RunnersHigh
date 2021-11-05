@@ -6,12 +6,11 @@ import Box from '@mui/material/Box'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import { setUserinfo } from '../redux/action'
+import { setUserinfo, setIsLogin } from '../redux/action'
 import { withRouter } from 'react-router-dom'
-const Login = ({ ChangeSelect }) => {
+const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
   const {
     register,
-    reset,
     formState: { errors },
     handleSubmit
   } = useForm({ mode: 'onChange' })
@@ -19,7 +18,6 @@ const Login = ({ ChangeSelect }) => {
   const dispatch = useDispatch()
 
   const onSubmit = (data) => {
-    console.log('11111111111', data)
     axios.post('http://localhost:80/users/login', {
       email: data.email,
       password: data.password
@@ -27,16 +25,21 @@ const Login = ({ ChangeSelect }) => {
       'Content-Type': 'application/json'
     })
       .then((data) => {
-        console.log('2222222222', data)
-        dispatch(setUserinfo(data.data.user))
+        localStorage.setItem('accessToken', data.data.data.accessToken)
+
+        dispatch(setIsLogin(true))
+        dispatch(setUserinfo(JSON.parse(data.config.data)))
       })
       .catch((err) => {
-        if (err) console.log(err)
+        if (err.response.status === 400) {
+          alert('로그인 정보가 일치하지 않습니다.')
+        }
       })
-
-    reset()
   }
 
+  const kakako_login = () => {
+
+  }
   return (
     <div className='login_container'>
       <h3 className='login_title'>
@@ -89,11 +92,17 @@ const Login = ({ ChangeSelect }) => {
           fullWidth
           variant='contained'
           sx={{ mt: 3, mb: 2 }}
+          onClick={isLogin
+            ? OpenModal(false)
+            : null}
         >
           Sign In
         </Button>
       </Box>
-      <div>소셜로그인 자리 </div>
+      <div className='login_social'>
+        <div />
+      </div>
+
       <div onClick={ChangeSelect} className='login_tosignup'>회원이 아니십니까?</div>
     </div>
   )
