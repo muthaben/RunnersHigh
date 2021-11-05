@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser')
 const PORT = 80
 const userRoute = require('./route/user')
 const postRoute = require('./route/post')
+const chatRoute = require('./route/chat')
 app.use(cookieParser())
 app.use(express.json())
 app.use(
@@ -21,6 +22,7 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRoute)
 app.use('/posts', postRoute)
+app.use('/chat', chatRoute)
 
 app.listen(PORT, () => {
   console.log(`이 서버는 ${PORT}에서 실행중입니다.`)
