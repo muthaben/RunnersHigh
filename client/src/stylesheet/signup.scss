@@ -16,4 +16,9 @@
 }
 
 .signup_tologin {
+  &:hover{
+    cursor:pointer;
+    color: $color-hovercolor-sky;
+    
+  }
 }

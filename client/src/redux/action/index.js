@@ -1,11 +1,5 @@
 export const SET_USERINFO = 'SET_USERINFO'
-
-const initialState = {
-  userinfo: {
-    email: '',
-    password: ''
-  }
-}
+export const SET_ISLOGIN = 'SET_ISLOGIN'
 
 export const setUserinfo = (userinfo) => {
   return {
@@ -13,5 +7,13 @@ export const setUserinfo = (userinfo) => {
     payload: {
       ...userinfo
     }
+  }
+}
+
+export const setIsLogin = (isLogin) => {
+  return {
+    type: SET_ISLOGIN,
+    payload: isLogin
+
   }
 }

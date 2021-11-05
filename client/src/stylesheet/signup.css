@@ -10,4 +10,9 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
+}
+
+.signup_tologin:hover {
+  cursor: pointer;
+  color: #a5eaf6;
 }/*# sourceMappingURL=signup.css.map */

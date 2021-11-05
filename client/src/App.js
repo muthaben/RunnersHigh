@@ -18,16 +18,28 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import DetailEditPost from './pages/DetailEditPost'
 import LoginModal from './components/LoginModal'
+import { useSelector } from 'react-redux'
+
 function App () {
   const [showModal, setShowModal] = useState(false)
   const OpenModal = () => {
     setShowModal(!showModal)
   }
+  const userInfo = useSelector((state) => state.userReducer)
+  const { isLogin, userinfo } = userInfo
   return (
     <div className='page_container'>
       <Router>
-        <LoginModal showModal={showModal} OpenModal={OpenModal} />
-        <Navbar OpenModal={OpenModal} />
+        <LoginModal
+          showModal={showModal}
+          OpenModal={OpenModal}
+          isLogin={isLogin}
+        />
+        <Navbar
+          OpenModal={OpenModal}
+          isLogin={isLogin}
+          userinfo={userinfo}
+        />
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/main' exact component={MainPage} />
