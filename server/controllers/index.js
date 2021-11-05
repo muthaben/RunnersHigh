@@ -15,5 +15,10 @@ module.exports = {
   postdelete: require('./post/postdelete'),
   // comment
   comment: require('./comment/comment'),
-  comments: require('./comment/comments')
+  comments: require('./comment/comments'),
+  // chat
+  room: require('./chat/room'),
+  rooms: require('./chat/rooms'),
+  message: require('./chat/message'),
+  messages: require('./chat/messages')
 }

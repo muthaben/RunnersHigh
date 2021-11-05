@@ -35,20 +35,24 @@ db.sequelize = sequelize
 db.Sequelize = Sequelize
 
 // associations 설정
-const { user, post, comment, room, userroom, chatting } = sequelize.models
+const { user, post, comment, room, user_room, chatting } = sequelize.models
 comment.belongsTo(user)
 user.hasMany(comment)
 comment.belongsTo(post)
 post.hasMany(comment)
 post.belongsTo(user)
 user.hasMany(post)
-// userroom.belongsTo(user)
-// user.hasMany(userroom)
-// userroom.belongsTo(room)
-// room.hasMany(userroom)
-// chatting.belongsTo(user)
-// user.hasMany(chatting)
-// chatting.belongsTo(room)
-// room.hasMany(chatting)
+user_room.belongsTo(user, {
+  foreignKey: 'pairId'
+})
+user.hasMany(user_room, {
+  foreignKey: 'pairId'
+})
+user_room.belongsTo(room)
+room.hasMany(user_room)
+chatting.belongsTo(user)
+user.hasMany(chatting)
+chatting.belongsTo(room)
+room.hasMany(chatting)
 
 module.exports = db
