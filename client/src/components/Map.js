@@ -1,16 +1,18 @@
-import React,{useEffect} from 'react'
+import React,{useEffect , useRef} from 'react'
 import '../stylesheet/Map.scss'
 const {kakao} = window
 
 function Map( {getLongitude , getLatitude}) {
+    const adress = [Number(getLatitude) , Number(getLongitude)]
   useEffect(() => {
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    let mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = { 
-        center: new kakao.maps.LatLng(Number(getLatitude), Number(getLongitude)), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(adress[0] , adress[1]), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
+    // console.log(mapOption)
 
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+const map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
 var drawingFlag = false; // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
 var moveLine // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다
@@ -278,7 +280,7 @@ function getTimeHTML(distance) {
     return content;
 }
     
-},[])
+},[adress])
     return (
         <div id='map' style={{
             // width: '500px', 
