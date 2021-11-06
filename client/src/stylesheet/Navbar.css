@@ -1,48 +1,32 @@
-@import url(https://use.fontawesome.com/releases/v5.15.3/css/all.css);
 @font-face {
   font-family: "HelloMornin";
   src: url("./fonts/Hello_Mornin.ttf") format("truetype");
 }
-
 .navbar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   width: 100%;
   height: 95px;
   display: flex;
   background-color: white;
-  -webkit-box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
-          box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: -1px 4px 28px 0px rgba(0, 0, 0, 0.75);
   z-index: 5;
 }
 
 .container {
   width: 90%;
   height: 95px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .container a {
   margin: 10px;
   color: black;
 }
-
 .container a:hover {
   color: #a5eaf6;
 }
@@ -50,16 +34,12 @@
 .container .navbar_link {
   margin-right: 50px;
   font-size: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
-
 .container .navbar_link div {
   margin: 10px;
   color: black;
 }
-
 .container .navbar_link div:hover {
   cursor: pointer;
   color: #a5eaf6;
@@ -73,5 +53,4 @@
 
 .container .runners_High {
   color: black;
-}
-/*# sourceMappingURL=Navbar.css.map */
+}/*# sourceMappingURL=Navbar.css.map */

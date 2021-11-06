@@ -1,19 +1,12 @@
-@import url(https://use.fontawesome.com/releases/v5.15.3/css/all.css);
 .loginmodal_background {
   z-index: inherit;
   position: fixed;
   height: 100vh;
   width: 100%;
   background: rgba(0, 0, 0, 0.3);
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   z-index: 19;
 }
 
@@ -22,22 +15,12 @@
   border: solid 1px #a7a1a1;
   border-radius: 10px;
   height: 600px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: center;
+  flex-direction: column;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   z-index: 20;
-  -webkit-box-shadow: -3px -3px 7px #ffffff73;
-          box-shadow: -3px -3px 7px #ffffff73;
+  box-shadow: -3px -3px 7px #ffffff73;
   background: white;
   position: relative;
 }
@@ -46,5 +29,4 @@
   position: absolute;
   top: 0;
   right: 0;
-}
-/*# sourceMappingURL=loginmodal.css.map */
+}/*# sourceMappingURL=loginmodal.css.map */
