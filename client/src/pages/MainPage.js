@@ -31,10 +31,10 @@ function MainPage () {
   return (
     <>
       <div className='main_container'>
-        <div className='main_serch_div'>
+        {/* <div className='main_serch_div'>
           <input type='text' className='main_serch' placeholder='serch' />
           <button>검색</button>
-        </div>
+        </div> */}
         <div className='main_section1 panel'>
           <PostListCard />
         </div>

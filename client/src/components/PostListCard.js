@@ -36,7 +36,7 @@ export default function PostListCard () {
   return (
     <div className='postcard_container'>
       <Card sx={{ minWidth: 500, maxWidth: 500 }}>
-        <Link to='/detail'>
+        <Link to='/detailpost'>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: red[500] }} aria-label='your image'>
@@ -52,7 +52,7 @@ export default function PostListCard () {
             subheader='September 14, 2016'
           />
         </Link>
-        <Link to='/detail'>
+        <Link to='/detailpost'>
           <CardMedia
             component='img'
             height='194'
