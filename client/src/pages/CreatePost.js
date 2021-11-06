@@ -9,9 +9,10 @@ import {setPost} from '../redux/action'
 import DaumAdress from '../components/DaumAdress'
 const {kakao} = window
 function CreatePost ({match}) {
+  const dispatch = useDispatch()
   const [getSerch , getSetSerch] =useState(false)
   const [getTitle ,getSetTitle ] = useState('')
-  const [getFile ,getSetFile ] = useState('')
+  const [getFileImage ,getSetFileImage ] = useState('')
   const [getText , getSetText] = useState('')
   const [getLocation , getSetLocation] = useState('')
   const [getLatitude , getSetLatitude] = useState(null)
@@ -27,12 +28,15 @@ function CreatePost ({match}) {
   const onTextHandle = (e) => {
     getSetText(e.target.value)
   }
-const onFileHandle = (e) => {
-  getSetFile(e.target.files[0])
+const onFileImageHandle = (e) => {
+  getSetFileImage(e.target.files[0])
 }
 
 const onSerchAdressHandle = () => {
-  getSetSerch(true)
+  getSetSerch(!getSerch)
+}
+const onCloseSerchHandle = () => {
+  getSetSerch(false)
 }
 useEffect(() => {
   const geocoder = new kakao.maps.services.Geocoder();
@@ -49,22 +53,45 @@ useEffect(() => {
   });
 }, [getDetailAdress]);
 
+const onSubmitHandle = (e) => {
+  e.preventDefault()
+  const formData = new FormData()
+  formData.append('들어감?','들어옴?')
+  formData.append('title', getTitle)
+  formData.append('text', getText)
+  formData.append('latitude', getLatitude)
+  formData.append('longitude', getLongitude)
+  formData.append('fileImage' , getFileImage)
+  console.log(formData)
+  dispatch(setPost(formData))
+  //  axios.post('http://localhost:80/posts',formData , {
+  //   headers: {
+  //     Authorization: `Bearer ${localStorage.accessToken}`,
+  //     'Content-Type': 'multipart/form-data',
+  //     // 'withcredentials': true
+  //   },
+  //  })
+  //  .then((data) => {
+  //    console.log(data)
+  //    dispatch(setPost(formData))
+  //  })
+}
 
 
-
+// console.log(getFileImage)
   return (
     <div className='create_container'>
       <form className='create_form'>
         <div className='create_title'>
           <span>제목</span>
-          <input type='text' placeholder='제목을 입력하세요' onChange={onTitleHandle} />
+          <input type='text' name='title' placeholder='제목을 입력하세요' value={getTitle} onChange={onTitleHandle} />
         </div>
         <div className='create_checkbox'>
           <span>썸넬</span>
           <input type='file' 
                  accept='img/*' 
-                 name='file' 
-                 onClick={onFileHandle}
+                 name='fileImage' 
+                 onClick={onFileImageHandle}
           />
           <span>이미지선택</span>
           <input type='checkbox' />
@@ -72,21 +99,23 @@ useEffect(() => {
         </div>
         <div className='create_main_text'>
           <span>본문</span>
-          <textarea placeholder='본문을 입력하세요' onChange={onTextHandle} />
+          <textarea placeholder='본문을 입력하세요' name='text'  value= {getText} onChange={onTextHandle}  />
         </div>
         <div className='create_map'>
         <span>코스</span>
-        {getDetailAdress ? `${getDetailAdress}` : '장소검색'}
+        <DaumAdress  serchAdress={serchAdress} onCloseSerchHandle={onCloseSerchHandle}/>
+        {getDetailAdress ? `${getDetailAdress}` : null}
         <button
           className='create_main_servh_btn'
           value='주소 검색'
           onClick={onSerchAdressHandle}
           >장소선택
-          <DaumAdress  serchAdress={serchAdress} />
           </button>
+          {getLongitude && getLatitude ? (
           <Map  getLatitude={getLatitude} getLongitude={getLongitude}/>
+          ) : null}
         </div>
-        <button className='create_button' >게시글 작성</button>
+        <button className='create_button' onClick={onSubmitHandle} >게시글 작성</button>
        
       </form>
     
