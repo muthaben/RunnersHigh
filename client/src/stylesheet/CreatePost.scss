@@ -86,3 +86,42 @@
     width: 10%;
   }
 }
+
+.search_on {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $color-modalbackground-black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.2s linear;
+  z-index: 10;
+  i {
+    float: right;
+    padding: {
+      top: 0.9rem;
+      right: 1rem;
+    }
+    .address_search{
+      background-color: white;
+    max-width: 800px;
+    border-radius: 1rem;
+    overflow: hidden;
+    }
+    
+}
+}
+
+.search_off {
+  
+    visibility: hidden;
+    opacity: 0;
+  
+}
