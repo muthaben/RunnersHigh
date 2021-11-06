@@ -5,6 +5,8 @@ export const initialState = {
     email: '',
     nickname: '',
     image_url: ''
-  }
+  },
+  posts:[],
+  post:null
 
 }

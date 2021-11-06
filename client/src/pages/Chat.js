@@ -1,5 +1,6 @@
-import '../stylesheet/chat.css'
+import '../stylesheet/chat.scss'
 function Chat () {
+ 
   return (
     <div className='chat_container'>
       <div className='chat_container2'>
@@ -9,7 +10,7 @@ function Chat () {
         </div>
         <div className='chat_room'>
           <div className='chat_room_show'>
-            <div className='chat_room_detail'>
+            <div  className='chat_room_detail'>
               <div className='chat_room_image'>이미지<span> 한성린 </span></div>
               <div className='chat_room_text'>안녕하세요 참가하려고 합니다. </div>
             </div>
