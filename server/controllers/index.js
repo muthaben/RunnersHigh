@@ -7,6 +7,7 @@ module.exports = {
   userinfo: require('./user/userinfo'),
   userinfoedit: require('./user/userinfoedit'),
   userimage: require('./user/userimage'),
+  kakao: require('./user/kakao'),
   // post
   mypost: require('./post/mypost'),
   ourpost: require('./post/ourpost'),
