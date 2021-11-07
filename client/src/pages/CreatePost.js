@@ -29,7 +29,7 @@ function CreatePost ({ match, history, post }) {
     getSetText(e.target.value)
   }
   const onFileImageHandle = (e) => {
-    getSetFileImage(e.target.files)
+    getSetFileImage(e.target.files[0])
   }
 
   const onsearchAddressHandle = () => {
@@ -79,7 +79,7 @@ function CreatePost ({ match, history, post }) {
     })
       .then((data) => {
         console.log(data.data.data)
-        history.push('/main')
+        // history.push('/main')
         dispatch(setPost(data.data.data))
       })
   }
@@ -100,7 +100,7 @@ function CreatePost ({ match, history, post }) {
             <input
               type='file'
               accept='img/*'
-              name='fileImage'
+              name='postimage'
               onChange={onFileImageHandle}
             />
             <span>이미지선택</span>
@@ -113,7 +113,7 @@ function CreatePost ({ match, history, post }) {
           </div>
           <div className='create_map'>
             <span>코스</span>
-            <div className={getSearch ? 'search_on' : 'search_off'}>
+            <div className={getSearch ? 'search_on' : 'search_on off'}>
               <DaumAddress searchAddress={searchAddress} onClosesearchHandle={onClosesearchHandle} />
             </div>
             {getDetailAddress ? `${getDetailAddress}` : null}
