@@ -103,25 +103,30 @@
   opacity: 1;
   transition: all 0.2s linear;
   z-index: 10;
+  .address_search {
+    background-color: white;
+    max-width: 500px;
+    max-height: 500px;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
   i {
     float: right;
     padding: {
       top: 0.9rem;
       right: 1rem;
     }
-    .address_search{
-      background-color: white;
-    max-width: 800px;
-    border-radius: 1rem;
-    overflow: hidden;
-    }
-    
-}
+  }
 }
 
-.search_off {
-  
-    visibility: hidden;
-    opacity: 0;
-  
+.off {
+  visibility: hidden;
+  opacity: 0;
 }
+
+// .daumPostCode {
+//   width: 700px;
+//   height: 800px;
+//   background: red;
+//   z-index: 20;
+// }
