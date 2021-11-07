@@ -19,9 +19,9 @@ module.exports = async (req, res) => {
         longitude: req.body.longitude,
         userId: accessTokenData.id
       })
-      res.status(201).send({ data: payload ,message: '게시물 작성에 성공했습니다' })
+      res.status(201).send({ data: payload, message: '게시물 작성에 성공했습니다' })
     } else {
-      const payload =await post.create({
+      const payload = await post.create({
         title: req.body.title,
         thumbnail_url: req.file.location,
         text: req.body.text,
@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
         longitude: req.body.longitude,
         userId: accessTokenData.id
       })
-      res.status(201).send({ data: payload ,message: '게시물 작성에 성공했습니다,' })
+      res.status(201).send({ data: payload, message: '게시물 작성에 성공했습니다,' })
     }
   }
 }
