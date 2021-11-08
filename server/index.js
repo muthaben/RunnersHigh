@@ -17,7 +17,7 @@ app.use(
 )
 
 app.get('/', (req, res) => {
-  res.send('hello RunnersHigh')
+  res.send('Hello RunnersHigh')
 })
 
 app.use('/users', userRoute)

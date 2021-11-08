@@ -5,21 +5,25 @@
 const { comment, post, user } = require('../../models')
 
 module.exports = async (req, res) => {
-  const postInfo = await post.findOne({ // 게시물 정보
-    include: [
-      { model: user, attributes: ['nickname', 'image_url'] }
-    ],
-    where: {
-      id: req.params.postid
-    }
-  })
-  const comments = await comment.findAll({ // 댓글정보
-    include: [
-      { model: user, attributes: ['nickname', 'image_url'] }
-    ],
-    where: {
-      postId: req.params.postid
-    }
-  })
-  res.status(200).send({ postInfo, comments, message: '댓글 조회에 성공했습니다' })
+  try {
+    const postInfo = await post.findOne({ // 게시물 정보
+      include: [
+        { model: user, attributes: ['nickname', 'image_url'] }
+      ],
+      where: {
+        id: req.params.postid
+      }
+    })
+    const comments = await comment.findAll({ // 댓글정보
+      include: [
+        { model: user, attributes: ['nickname', 'image_url'] }
+      ],
+      where: {
+        postId: req.params.postid
+      }
+    })
+    res.status(200).send({ postInfo, comments, message: '댓글 조회에 성공했습니다' })
+  } catch (error) {
+    res.status(500).send(error)
+  }
 }
