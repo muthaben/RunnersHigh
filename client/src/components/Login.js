@@ -8,6 +8,9 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { setUserinfo, setIsLogin } from '../redux/action'
 import { withRouter } from 'react-router-dom'
+
+window.Kakao.init('909ce02353d4c6d047b3af93cedeabc7')
+
 const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
   const {
     register,
@@ -37,8 +40,30 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
       })
   }
 
-  const kakako_login = () => {
+  const kakakoLogin = async () => {
+    await window.Kakao.Auth.login({
+      scope: 'profile_nickname, profile_image, account_email',
+      success: (authObj) => {
+        console.log(authObj)
+        window.Kakao.API.request({
+          url: '/v2/user/me',
+          success: res => {
+            const kakaoAccount = res.kakao_account
+            axios.post('http://localhost:80/users/login/kakao', {
+              email: kakaoAccount.email,
+              nickname: kakaoAccount.profile.nickname,
+              thumbnail_url: kakaoAccount.profile.thumbnail_image_url
+            }, {
+              withCredentials: true
+            })
+            // console.log('====', kakaoAccount.email)
+            // console.log('====', kakaoAccount.profile.nickname, kakaoAccount.profile.thumbnail_image_url)
+          }
+        })
+      }
+    })
 
+    dispatch(setIsLogin(true))
   }
   return (
     <div className='login_container'>
@@ -58,11 +83,11 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
             autoFocus
             {...register('email', {
               required: '이메일을 입력해주세요.',
-              // pattern: {
-              //   value:
-              //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              //   message: '잘못된 이메일 형식입니다.'
-              // }
+              pattern: {
+                value:
+                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: '잘못된 이메일 형식입니다.'
+              }
             })}
           />
           {errors.email && <p>{errors.email.message}</p>}
@@ -99,7 +124,7 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
           Sign In
         </Button>
       </Box>
-      <div className='login_social'>
+      <div className='login_social' onClick={kakakoLogin}>
         <div />
       </div>
 

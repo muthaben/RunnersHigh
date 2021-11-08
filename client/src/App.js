@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState , useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Route,
@@ -16,10 +16,24 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import DetailEditPost from './pages/DetailEditPost'
 import LoginModal from './components/LoginModal'
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
+import {setIsLogin} from './redux/action'
+
+
 
 function App () {
   const [showModal, setShowModal] = useState(false)
+  const dispatch = useDispatch()
+  // const localStoragetokenCheck = localStorage.accessToken
+	// useEffect(() => {
+	// 	if (localStoragetokenCheck) {
+	// 		// 로그인유지를 위해서 isLogin을 true로 변경해줘야한다.
+	// 		dispatch(setIsLogin(false))
+	// 	}
+  //   else {
+  //     dispatch(setIsLogin(true))
+  //   }
+	// }, [])
   const OpenModal = () => {
     setShowModal(!showModal)
   }

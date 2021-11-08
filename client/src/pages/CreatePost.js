@@ -17,7 +17,6 @@ function CreatePost ({ match, history, post }) {
   const [getLatitude, getSetLatitude] = useState(null)
   const [getLongitude, getSetLongitude] = useState(null)
   const [getDetailAddress, getSetDetailAddress] = useState('')
-  const [isAddressBtnClick, setIsAddressBtnClick] = useState(0)
 
   const searchAddress = (a) => {
     getSetDetailAddress(a)
@@ -53,14 +52,14 @@ function CreatePost ({ match, history, post }) {
     })
   }, [getDetailAddress])
 
-  const onSubmitHandle = async (e) => {
+  const onSubmitHandle = (e) => {
     e.preventDefault()
     const formData = new FormData()
     formData.append('title', getTitle)
     formData.append('text', getText)
     formData.append('latitude', getLatitude)
     formData.append('longitude', getLongitude)
-    formData.append('thumbnail_url', getFileImage)
+    formData.append('postimage', getFileImage)
     formData.append('location', getDetailAddress)
 
     for (const key of formData.keys()) {
@@ -69,21 +68,31 @@ function CreatePost ({ match, history, post }) {
     for (const value of formData.values()) {
       console.log(value)
     }
-    // dispatch(setPost(formData))
-    await axios.post('http://localhost:80/posts', formData, {
-      headers: {
-        Authorization: `Bearer ${localStorage.accessToken}`,
-        'Content-Type': 'multipart/form-data'
-      // 'withcredentials': true
-      }
-    })
-      .then((data) => {
-        console.log(data.data.data)
-        // history.push('/main')
-        dispatch(setPost(data.data.data))
-      })
-  }
 
+    if (
+      getTitle === '' || getText === ''
+    ) {
+      alert('본문을 입력하세요 .')
+    } else if (getDetailAddress === '') {
+      alert('장소를 선택하세요.')
+    } else {
+      axios.post('http://localhost:80/posts', formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.accessToken}`,
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then((data) => {
+          console.log(data.data.data)
+
+          history.push('/main')
+          dispatch(setPost(data.data.data))
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }
   // console.log(getFileImage)
   return (
     <>
@@ -131,7 +140,6 @@ function CreatePost ({ match, history, post }) {
               : null}
           </div>
           <button className='create_button' onClick={onSubmitHandle}>게시글 작성</button>
-
         </form>
 
       </div>
