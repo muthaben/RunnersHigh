@@ -26,14 +26,16 @@ const ExpandMore = styled((props) => {
   })
 }))
 
-export default function PostListCard () {
+export default function PostListCard ({ post }) {
   const [expanded, setExpanded] = React.useState(false)
 
   const handleExpandClick = () => {
     setExpanded(!expanded)
   }
 
+
   return (
+
     <div className='postcard_container'>
       <Card sx={{ minWidth: 500, maxWidth: 500 }}>
         <Link to='/detailpost'>
@@ -49,20 +51,20 @@ export default function PostListCard () {
               </IconButton>
         }
             title='러닝메이트 모집 '
-            subheader='September 14, 2016'
+            subheader={Date(post.createdAt)}
           />
         </Link>
         <Link to='/detailpost'>
           <CardMedia
             component='img'
             height='194'
-            image='circle-scatter-haikei.png'
+            image={post.thumbnail_url}
             alt='Your image'
           />
         </Link>
         <CardContent>
           <Typography variant='body2 h1' color='text.secondary' style={{ fontWeight: 900, fontSize: 20 }}>
-            서울 양재동에서 달릴사람 모집합니다.
+            {post.title}
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
@@ -81,16 +83,8 @@ export default function PostListCard () {
         </CardActions>
         <Collapse in={expanded} timeout='auto' unmountOnExit>
           <CardContent>
-            <Typography paragraph>러닝멤버 모집합니다.</Typography>
-            <Typography paragraph>
-              서울시 양재동 우성아파트 앞 양재천에서 달릴사람 구합니다.
-            </Typography>
-            <Typography paragraph>
-              멤버는 10명이 되면 종료 하겠습니다.
-            </Typography>
-            <div>
-              지도를 넣어주죠
-            </div>
+            <Typography paragraph>{post.text}</Typography>
+
           </CardContent>
         </Collapse>
       </Card>
