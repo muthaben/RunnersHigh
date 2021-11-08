@@ -6,17 +6,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width:100%;
+  width: 100%;
   // padding-left: 100px;
   // padding-right: 100px;
 
   .mypage_profile {
     padding-top: 50px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 50%;
-    height: 15em;
+    // height: 15em;
     border-bottom: black solid 2px;
     .mypage_profile1 {
       width: 50%;
@@ -32,7 +33,7 @@
       flex-direction: column;
       width: 50%;
       height: 100%;
-      gap: 50px;
+      gap: 10px;
 
       .mypage_nickname {
         font-size: 20px;
@@ -56,7 +57,7 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 30px;
-    width:80%
+    width: 80%;
   }
 
   .mypage_noting {

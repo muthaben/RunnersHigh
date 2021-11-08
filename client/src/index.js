@@ -1,3 +1,6 @@
+// require('dotenv').config()
+// import env from 'dotenv'
+// env.config()
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
@@ -11,14 +14,14 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 // import rootReducer from './redux/reducer/index'
-
 const persistConfig = {
   key: 'root',
   storage: storage
 }
 const persisted = persistReducer(persistConfig, Reducer)
 const store = createStore(persisted, compose(
-  applyMiddleware(promiseMiddleware, ReduxThunk)
+  applyMiddleware(promiseMiddleware, ReduxThunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 )
 const persistor = persistStore(store)

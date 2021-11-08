@@ -29,7 +29,7 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
     })
       .then((data) => {
         localStorage.setItem('accessToken', data.data.data.accessToken)
-        // console.log(data)
+        //  console.log(data)
         dispatch(setIsLogin(true))
         dispatch(setUserinfo(JSON.parse(data.config.data)))
       })
@@ -83,11 +83,11 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
             autoFocus
             {...register('email', {
               required: '이메일을 입력해주세요.',
-              pattern: {
-                value:
-                  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                message: '잘못된 이메일 형식입니다.'
-              }
+              // pattern: {
+              //   value:
+              //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+              //   message: '잘못된 이메일 형식입니다.'
+              // }
             })}
           />
           {errors.email && <p>{errors.email.message}</p>}

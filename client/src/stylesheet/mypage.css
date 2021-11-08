@@ -21,6 +21,10 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -28,7 +32,6 @@
       -ms-flex-align: center;
           align-items: center;
   width: 50%;
-  height: 15em;
   border-bottom: black solid 2px;
 }
 
@@ -59,7 +62,7 @@
           flex-direction: column;
   width: 50%;
   height: 100%;
-  gap: 50px;
+  gap: 10px;
 }
 
 .mypage_container .mypage_profile .mypage_profile2 .mypage_nickname {
