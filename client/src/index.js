@@ -3,21 +3,39 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import { Provider } from 'react-redux'
-import { applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore , compose } from 'redux'
 import promiseMiddleware from 'redux-promise'
 import ReduxThunk from 'redux-thunk'
-import Reducer from './redux/reducer/index'
+import Reducer  from './redux/reducer/index'
+import { PersistGate } from 'redux-persist/integration/react'
+import { persistStore , persistReducer } from "redux-persist"
+import storage from "redux-persist/lib/storage"
+// import rootReducer from './redux/reducer/index'
+
+const persistConfig = {
+  key: "root",
+  storage: storage,
+}
+const persisted = persistReducer(persistConfig, Reducer)
+const store = createStore(persisted, compose(
+  applyMiddleware(promiseMiddleware, ReduxThunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+)
+)
+
+
 const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
+const persistor = persistStore(store)
+
 ReactDOM.render(
   <Provider
-    store={createStoreWithMiddleware(Reducer,
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__()
-    )}
+    store={store}
   >
+    <PersistGate persistor={persistor} >
     <React.StrictMode>
       <App />
     </React.StrictMode>
+    </PersistGate>
   </Provider>,
   document.getElementById('root')
 )

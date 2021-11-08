@@ -17,7 +17,7 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
       .then((data) => {
         dispatch(setUserinfo({}))
         dispatch(setIsLogin(false))
-        localStorage.removeItem(data)
+        localStorage.clear()
         history.push('/')
       })
       .catch((err) => {
