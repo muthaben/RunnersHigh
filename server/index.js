@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -10,7 +11,7 @@ app.use(cookieParser())
 app.use(express.json())
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: [process.env.CORS_URL],
     methods: ['GET', 'POST', 'DELETE', 'PATCH', 'OPTIONS'],
     credentials: true
   })
