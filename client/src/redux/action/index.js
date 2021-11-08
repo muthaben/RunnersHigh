@@ -1,7 +1,7 @@
 export const SET_USERINFO = 'SET_USERINFO'
 export const SET_ISLOGIN = 'SET_ISLOGIN'
 export const SET_POST = 'SET_POST'
-export const SET_POSTS = "SET_POSTS"
+export const SET_POSTS = 'SET_POSTS'
 export const setUserinfo = (userinfo) => {
   return {
     type: SET_USERINFO,
@@ -29,5 +29,3 @@ export const setPosts = (posts) => {
     payload: posts
   }
 }
-
-

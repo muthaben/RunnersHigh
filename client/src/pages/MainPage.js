@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PostListCard from '../components/PostListCard'
 import '../stylesheet/mainpage.css'
 import Footer from '../components/Footer'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger.js'
-
+import { useSelector, useDispatch } from 'react-redux'
+import axios from 'axios'
+import { setPosts } from '../redux/action'
 function MainPage () {
   gsap.registerPlugin(ScrollTrigger)
 
@@ -28,6 +30,19 @@ function MainPage () {
     })
   })
 
+  const dispatch = useDispatch()
+  const postInfo = useSelector((state) => state.postReducer)
+
+  const { posts } = postInfo
+  const getPosts = () => {
+    axios.get('http://localhost:80/posts')
+      .then((data) => {
+        // console.log(data.data.data)
+        dispatch(setPosts(data.data.data.reverse()))
+      })
+  }
+  useEffect(() => getPosts(), [])
+
   return (
     <>
       <div className='main_container'>
@@ -35,18 +50,8 @@ function MainPage () {
           <input type='text' className='main_serch' placeholder='serch' />
           <button>검색</button>
         </div> */}
-        <div className='main_section1 panel'>
-          <PostListCard />
-        </div>
-        <section className='main_section2 panel'>
-          <PostListCard />
-        </section>
-        <section className='main_section3 panel'>
-          <PostListCard />
-        </section>
-        <section className='main_section4 panel'>
-          <PostListCard />
-        </section>
+
+        {posts.map((post) => <div className='main_section1 panel' key={post.id}><PostListCard post={post} key={post.id} /></div>)}
 
       </div>
       <Footer />

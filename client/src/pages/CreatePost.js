@@ -85,7 +85,7 @@ function CreatePost ({ match, history, post }) {
         .then((data) => {
           console.log(data.data.data)
 
-          history.push('/main')
+          history.push('/')
           dispatch(setPost(data.data.data))
         })
         .catch((err) => {
