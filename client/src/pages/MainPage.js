@@ -10,25 +10,25 @@ import { setPosts } from '../redux/action'
 function MainPage () {
   gsap.registerPlugin(ScrollTrigger)
 
-  let scrollTween
+  // let scrollTween
 
-  function goToSection (i) {
-    scrollTween = gsap.to(window, {
-      scrollTo: { y: i * window.innerHeight, autoKill: false },
-      duration: 1,
-      onComplete: () => scrollTween = null,
-      overwrite: true
-    })
-  }
+  // function goToSection (i) {
+  //   scrollTween = gsap.to(window, {
+  //     scrollTo: { y: i * window.innerHeight, autoKill: false },
+  //     duration: 1,
+  //     onComplete: () => scrollTween = null,
+  //     overwrite: true
+  //   })
+  // }
 
-  gsap.utils.toArray('.panel').forEach((panel, i) => {
-    ScrollTrigger.create({
-      trigger: panel,
-      start: 'top bottom',
-      end: '+=200%',
-      onToggle: self => self.isActive && !scrollTween && goToSection(i)
-    })
-  })
+  // gsap.utils.toArray('.panel').forEach((panel, i) => {
+  //   ScrollTrigger.create({
+  //     trigger: panel,
+  //     start: 'top bottom',
+  //     end: '+=200%',
+  //     onToggle: self => self.isActive && !scrollTween && goToSection(i)
+  //   })
+  // })
 
   const dispatch = useDispatch()
   const postInfo = useSelector((state) => state.postReducer)
