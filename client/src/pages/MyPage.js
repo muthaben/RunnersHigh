@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import PostListCard from '../components/PostListCard'
 import '../stylesheet/mypage.css'
 import Avatar from '@mui/material/Avatar'
@@ -11,8 +11,11 @@ import Box from '@mui/material/Box'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-function MyPage () {
+import { useDispatch,useSelector } from 'react-redux'
+import { setUserinfo } from '../redux/action'
+function MyPage ({userinfo}) {
+
+  const dispatch = useDispatch()
   const [editProfile, setEditProfile] = useState(false)
   const editHandle = () => {
     setEditProfile(!editProfile)
@@ -23,16 +26,66 @@ function MyPage () {
     formState: { errors },
     handleSubmit
   } = useForm({ mode: 'onChange' })
+
+const myPage = () => {
+  axios.get('http://localhost:80/users/userinfo' ,{
+  headers: {
+    Authorization: `Bearer ${localStorage.accessToken}`
+  }
+})
+  .then((res) => {
+    console.log(res.data.data)
+    dispatch(setUserinfo(res.data.data))
+  })
+}
+useEffect(() => myPage(), [])
+
+const [profileImage , setProfileImage] = useState('')
+const onChangeImage = (e) => {
+  setProfileImage(e.target.files[0])
+}
+
+
+const onProfileHandle = (data) => {
+  
+  const formData = new FormData()
+  formData.append('nickname' , data.nickname)
+  formData.append('password',data.password)
+  formData.append('userimage',profileImage)
+  for (const key of formData.keys()) {
+    console.log(key)
+  }
+  for (const value of formData.values()) {
+    console.log(value)
+  }
+  axios.patch('http://localhost:80/users/userinfo',formData ,{
+    headers: {
+      Authorization: `Bearer ${localStorage.accessToken}`
+    }
+  })
+  .then((data) => {
+    console.log(data.data)
+    dispatch(setUserinfo(data.data.data))
+    setEditProfile(!editProfile)
+  })
+}
+
   return (
     <div className='mypage_container'>
       {editProfile
-        ? <div className='mypage_profile'>
+        ? <form  onSubmit={handleSubmit(onProfileHandle)}  className='mypage_profile'>
           <div className='mypage_profile1'>
             <div className='mypage_myimg'>
               <Avatar
                 alt='Remy Sharp'
-                src='/static/images/avatar/1.jpg'
+                src={userinfo.image_url}
                 sx={{ width: 116, height: 116 }}
+              />
+              <input 
+                type='file'
+                accept='img/*'
+                name='userimage'
+                onChange={onChangeImage}
               />
             </div>
           </div>
@@ -46,10 +99,10 @@ function MyPage () {
               name='nickname'
               {...register('nickname', {
                 required: '닉네임을 입력해주세요.',
-                maxLength: {
-                  value: 10,
-                  message: '10자 미만으로 설정해주세요.'
-                }
+                // maxLength: {
+                //   value: 10,
+                //   message: '10자 미만으로 설정해주세요.'
+                // }
               })}
             />
             {errors.nickname && <p>{errors.nickname.message}</p>}
@@ -86,25 +139,25 @@ function MyPage () {
             />
             {errors.confirm_password && <p>{errors.confirm_password.message}</p>}
             <span className='mypage_confirmEdit'>
-              <button onClick={editHandle}>수정완료</button>
+              <button type='submit' >수정완료</button>
               <button>회원탈퇴</button>
             </span>
 
           </div>
-        </div>
+        </form>
         : <div className='mypage_profile'>
           <div className='mypage_profile1'>
             <div className='mypage_myimg'>
               <Avatar
                 alt='Remy Sharp'
-                src='/static/images/avatar/1.jpg'
+                src={userinfo.image_url}
                 sx={{ width: 116, height: 116 }}
               />
             </div>
           </div>
           <div className='mypage_profile2'>
-            <div className='mypage_nickname'>nickname</div>
-            <div className='mypage_email'>Email</div>
+            <div className='mypage_nickname'>{userinfo.nickname}</div>
+            <div className='mypage_email'>{userinfo.email}</div>
             <button className='mypage_editbutton' onClick={editHandle}>프로필수정</button>
           </div>
         </div>}

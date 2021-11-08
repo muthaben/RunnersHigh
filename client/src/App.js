@@ -39,6 +39,7 @@ function App () {
   }
   const userInfo = useSelector((state) => state.userReducer)
   const { isLogin, userinfo } = userInfo
+ console.log(userinfo)
   return (
     <div className='page_container'>
       <Router>
@@ -61,8 +62,12 @@ function App () {
           <Route path='/detailedit' exact component={DetailEditPost} />
           <Route path='/loginmodal' exact component={LoginModal} />
           <Route path='/chat' exact component={Chat} />
-          <Route path='/mypage' exact component={MyPage} />
-
+          {/* <Route path='/mypage' exact component={MyPage}  /> */}
+          <Route 
+          exact 
+          path='/mypage'
+          render={() => <MyPage userinfo={userinfo} />}
+          />
         </Switch>
         {/* <Footer /> */}
       </Router>
