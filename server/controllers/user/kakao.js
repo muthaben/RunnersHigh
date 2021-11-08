@@ -15,6 +15,7 @@ module.exports = async (req, res) => {
         social_type: 'kakao'
       })
       const accessToken = signAccessToken(newUser.dataValues)
+      console.log(accessToken)
       sendAccessToken(res, accessToken, newUser.id)
     } else {
       const accessToken = signAccessToken(userInfo.dataValues)

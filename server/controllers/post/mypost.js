@@ -7,21 +7,23 @@ const { post, user } = require('../../models')
 const { isAuthorized } = require('../../functions/token')
 
 module.exports = async (req, res) => {
-  console.log(req.params)
   const accessTokenData = isAuthorized(req)
-
-  if (!accessTokenData) {
-    res.status(401).send({ message: '유효하지 않은 토큰입니다' })
-  } else {
-    const myPosts = await post.findAll({
-      include: [
-        { model: user, attributes: ['nickname', 'image_url'] }
-      ],
-      where: {
-        userId: req.params.userid
-      },
-      order: [['id', 'DESC']]
-    })
-    res.status(200).send({ data: myPosts, message: '개별 게시물 조회에 성공했습니다' })
+  try {
+    if (!accessTokenData) {
+      res.status(401).send({ message: '유효하지 않은 토큰입니다' })
+    } else {
+      const myPosts = await post.findAll({
+        include: [
+          { model: user, attributes: ['nickname', 'image_url'] }
+        ],
+        where: {
+          userId: req.params.userid
+        },
+        order: [['id', 'DESC']]
+      })
+      res.status(200).send({ data: myPosts, message: '개별 게시물 조회에 성공했습니다' })
+    }
+  } catch (error) {
+    res.status(500).send(error)
   }
 }
