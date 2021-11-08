@@ -18,12 +18,9 @@ const persistConfig = {
 }
 const persisted = persistReducer(persistConfig, Reducer)
 const store = createStore(persisted, compose(
-  applyMiddleware(promiseMiddleware, ReduxThunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  applyMiddleware(promiseMiddleware, ReduxThunk)
 )
 )
-
-const createStoreWithMiddleware = applyMiddleware(promiseMiddleware, ReduxThunk)(createStore)
 const persistor = persistStore(store)
 
 ReactDOM.render(
