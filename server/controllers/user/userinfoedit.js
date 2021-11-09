@@ -31,7 +31,13 @@ module.exports = async (req, res) => {
         { where: { id: accessTokenData.id } }
         )
       }
-      res.status(201).send({ message: '닉네임, 비밀번호 또는 프로필 이미지 변경에 성공했습니다' })
+      const userInfo = await user.findOne({
+        where: {
+          id: accessTokenData.id
+        }
+      })
+      delete userInfo.dataValues.password
+      res.status(201).send({ data: userInfo.dataValues, message: '닉네임, 비밀번호 또는 프로필 이미지 변경에 성공했습니다' })
     } else {
       res.status(422).send({ message: '변경할 정보가 필요합니다' })
     }
