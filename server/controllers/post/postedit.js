@@ -1,5 +1,5 @@
 // 게시물 수정
-const { post } = require('../../models')
+const { post,user } = require('../../models')
 const { isAuthorized } = require('../../functions/token')
 
 module.exports = async (req, res) => {
@@ -52,6 +52,9 @@ module.exports = async (req, res) => {
         )
       }
       const postInfo = await post.findOne({
+        include: [
+          { model: user, attributes: ['nickname', 'image_url'] }
+        ],
         where: {
           id: req.params.postid
         }

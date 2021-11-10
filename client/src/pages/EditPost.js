@@ -8,6 +8,7 @@ import { setPost } from '../redux/action'
 import DaumAddress from '../components/DaumAddress'
 const { kakao } = window
 function EditPost ({ post, userinfo }) {
+  const history = useHistory()
   const dispatch = useDispatch()
   const [getSearch, getSetsearch] = useState(false)
   const [getTitle, getSetTitle] = useState(post.title)
@@ -77,7 +78,7 @@ function EditPost ({ post, userinfo }) {
         .then((data) => {
           console.log(data)
           dispatch(setPost(data.data.data))
-          history.goback()
+          history.goBack()
         })
         .catch((err) => console.log(err))
     }
