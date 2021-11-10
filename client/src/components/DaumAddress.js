@@ -2,7 +2,6 @@ import React from 'react'
 import DaumPostcode from 'react-daum-postcode'
 function DaumAdress ({ searchAddress, onClosesearchHandle }) {
   const handleComplete = (data) => {
-    console.log(data.address)
     // let fullAddress = data.address
     // let extraAddress = ''
 
@@ -22,24 +21,25 @@ function DaumAdress ({ searchAddress, onClosesearchHandle }) {
     // onCloseSerchHandle()
   }
   // const postCodeStyle = {
-   
+
   //   display: "block",
   //   position: "absolute",
   //   top: "20%",
   //   width: "800px",
   //   height: "800px",
   //   padding: "7px",
-  //   zIndex: 100, 
+  //   zIndex: 100,
   // };
-  
+
   return (
     <div className='address_search'>
       <i className='fas fa-times' onClick={onClosesearchHandle} />
-      <DaumPostcode className='daumPostCode'
+      <DaumPostcode
+        className='daumPostCode'
         onComplete={handleComplete}
         autoClose={false}
-        animation={true}
-         style={{ width: '90vw' , height:'60vh' ,maxWidth:'600px'}}
+        animation
+        style={{ width: '90vw', height: '60vh', maxWidth: '600px' }}
       />
     </div>
   )

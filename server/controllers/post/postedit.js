@@ -51,8 +51,14 @@ module.exports = async (req, res) => {
         { where: { id: req.params.postid } }
         )
       }
-      res.status(201).send({ message: '닉네임, 비밀번호 또는 프로필 이미지 변경에 성공했습니다' })
-    } else {
+      const postInfo = await post.findOne({
+        where: {
+          id: req.params.postid
+        }
+      })
+      res.status(201).send({ data: postInfo, message: '닉네임, 비밀번호 또는 프로필 이미지 변경에 성공했습니다' })
+    } 
+    else {
       res.status(422).send({ message: '변경할 정보가 필요합니다' })
     }
   } catch (error) {

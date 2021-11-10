@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react'
+import React, { useEffect } from 'react'
 import '../stylesheet/Map.scss'
 const { kakao } = window
 
@@ -15,23 +15,21 @@ function Map ({ getLongitude, getLatitude }) {
     const map = new kakao.maps.Map(mapContainer, mapOption) // 지도를 생성합니다
 
     // 지도에 확대 축소 컨트롤을 생성한다
-    const zoomControl = new kakao.maps.ZoomControl();
+    const zoomControl = new kakao.maps.ZoomControl()
 
     // 지도의 우측에 확대 축소 컨트롤을 추가한다
-    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+    map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT)
 
-    // 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(address[0], address[1]); 
+    // 마커가 표시될 위치입니다
+    const markerPosition = new kakao.maps.LatLng(address[0], address[1])
 
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
+    // 마커를 생성합니다
+    const marker = new kakao.maps.Marker({
+      position: markerPosition
+    })
 
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(map);
-
-
+    // 마커가 지도 위에 표시되도록 설정합니다
+    marker.setMap(map)
 
     let drawingFlag = false // 선이 그려지고 있는 상태를 가지고 있을 변수입니다
     let moveLine // 선이 그려지고 있을때 마우스 움직임에 따라 그려질 선 객체 입니다

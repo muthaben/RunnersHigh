@@ -13,7 +13,10 @@ import { red } from '@mui/material/colors'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { Link } from 'react-router-dom'
+
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import { setPost } from '../redux/action/index'
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props
@@ -33,12 +36,19 @@ export default function PostListCard ({ post }) {
     setExpanded(!expanded)
   }
 
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const aboutDetailPost = () => {
+    dispatch(setPost(post))
+    history.push('/detailpost')
+  }
 
   return (
 
     <div className='postcard_container'>
       <Card sx={{ minWidth: 500, maxWidth: 500 }}>
-        <Link to='/detailpost'>
+        <div onClick={aboutDetailPost}>
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: red[500] }} aria-label='your image'>
@@ -51,17 +61,17 @@ export default function PostListCard ({ post }) {
               </IconButton>
         }
             title='러닝메이트 모집 '
-            subheader={Date(post.createdAt)}
+            subheader={post.createdAt}
           />
-        </Link>
-        <Link to='/detailpost'>
+        </div>
+        <div onClick={aboutDetailPost}>
           <CardMedia
             component='img'
             height='194'
             image={post.thumbnail_url}
             alt='Your image'
           />
-        </Link>
+        </div>
         <CardContent>
           <Typography variant='body2 h1' color='text.secondary' style={{ fontWeight: 900, fontSize: 20 }}>
             {post.title}

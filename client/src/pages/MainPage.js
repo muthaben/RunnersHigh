@@ -12,25 +12,23 @@ function MainPage () {
 
   let scrollTween
 
-  function goToSection (i) {
+  // function goToSection (i) {
+  //   scrollTween = gsap.to(window, {
+  //     scrollTo: { y: i * window.innerHeight, autoKill: false },
+  //     duration: 1,
+  //     onComplete: () => scrollTween = null,
+  //     overwrite: true
+  //   })
+  // }
 
-    scrollTween = gsap.to(window, {
-      scrollTo: { y: i * window.innerHeight, autoKill: false },
-      duration: 1,
-      onComplete: () => scrollTween = null,
-      overwrite: true
-    })
-  }
-
-  gsap.utils.toArray('.panel').forEach((panel, i) => {
-
-    ScrollTrigger.create({
-      trigger: panel,
-      start: 'top bottom',
-      end: '+=200%',
-      onToggle: self => self.isActive && !scrollTween && goToSection(i)
-    })
-  })
+  // gsap.utils.toArray('.panel').forEach((panel, i) => {
+  //   ScrollTrigger.create({
+  //     trigger: panel,
+  //     start: 'top bottom',
+  //     end: '+=200%',
+  //     onToggle: self => self.isActive && !scrollTween && goToSection(i)
+  //   })
+  // })
 
   const dispatch = useDispatch()
   const postInfo = useSelector((state) => state.postReducer)
@@ -39,8 +37,7 @@ function MainPage () {
   const getPosts = () => {
     axios.get('http://localhost:80/posts')
       .then((data) => {
-        // console.log(data.data.data)
-        dispatch(setPosts(data.data.data.reverse()))
+        dispatch(setPosts(data.data.data))
       })
   }
   useEffect(() => getPosts(), [])

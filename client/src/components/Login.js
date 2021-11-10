@@ -31,7 +31,16 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
         localStorage.setItem('accessToken', data.data.data.accessToken)
         //  console.log(data)
         dispatch(setIsLogin(true))
-        dispatch(setUserinfo(JSON.parse(data.config.data)))
+
+        console.log(data)
+        axios.get('http://localhost:80/users/userinfo', {
+          headers: {
+            Authorization: `Bearer ${localStorage.accessToken}`
+          }
+        })
+          .then((data) => {
+            dispatch(setUserinfo(data.data.data))
+          })
       })
       .catch((err) => {
         if (err.response.status === 400) {
@@ -82,7 +91,7 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
             autoComplete='email'
             autoFocus
             {...register('email', {
-              required: '이메일을 입력해주세요.',
+              required: '이메일을 입력해주세요.'
               // pattern: {
               //   value:
               //     /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

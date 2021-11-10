@@ -13,7 +13,10 @@ import Reducer from './redux/reducer/index'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-// import rootReducer from './redux/reducer/index'
+
+import axios from 'axios'
+import { setIsLogin, setUserinfo } from './redux/action/index'
+
 const persistConfig = {
   key: 'root',
   storage: storage
@@ -25,6 +28,36 @@ const store = createStore(persisted, compose(
 )
 )
 const persistor = persistStore(store)
+
+const { dispatch } = store
+function axiosSetUp () {
+  axios.defaults.withCredentials = true
+  axios.interceptors.response.use(
+    (response) => {
+      return response
+    },
+    async (error) => {
+      const {
+        response: { status }
+      } = error
+
+      if (
+        status === 401 &&
+        error.response.data.message === '유효하지 않은 토큰입니다'
+      ) {
+        dispatch(setIsLogin(false))
+        dispatch(setUserinfo({}))
+        localStorage.clear()
+        // alert('')
+        // history.push('/')
+      }
+
+      return Promise.reject(error)
+    }
+  )
+}
+
+axiosSetUp()
 
 ReactDOM.render(
   <Provider
