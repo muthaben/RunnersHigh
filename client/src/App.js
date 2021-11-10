@@ -1,9 +1,10 @@
-import React, { useState , useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   BrowserRouter as Router,
   Route,
   Redirect,
-  Switch
+  Switch,
+  withRouter
 } from 'react-router-dom'
 import Chat from './pages/Chat'
 import CreatePost from './pages/CreatePost'
@@ -14,32 +15,24 @@ import MainPage from './pages/MainPage'
 import MyPage from './pages/MyPage'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import DetailEditPost from './pages/DetailEditPost'
+
 import LoginModal from './components/LoginModal'
-import { useSelector,useDispatch } from 'react-redux'
-import {setIsLogin} from './redux/action'
-
-
+import { useSelector, useDispatch } from 'react-redux'
+import { setIsLogin } from './redux/action'
 
 function App () {
   const [showModal, setShowModal] = useState(false)
   const dispatch = useDispatch()
-  // const localStoragetokenCheck = localStorage.accessToken
-	// useEffect(() => {
-	// 	if (localStoragetokenCheck) {
-	// 		// 로그인유지를 위해서 isLogin을 true로 변경해줘야한다.
-	// 		dispatch(setIsLogin(false))
-	// 	}
-  //   else {
-  //     dispatch(setIsLogin(true))
-  //   }
-	// }, [])
+
   const OpenModal = () => {
     setShowModal(!showModal)
   }
   const userInfo = useSelector((state) => state.userReducer)
   const { isLogin, userinfo } = userInfo
- console.log(userinfo)
+  const postInfo = useSelector((state) => state.postReducer)
+
+  const { posts, post } = postInfo
+
   return (
     <div className='page_container'>
       <Router>
@@ -57,16 +50,24 @@ function App () {
           <Route path='/' exact component={Home} />
           <Route path='/main' exact component={MainPage} />
           <Route path='/create' exact component={CreatePost} />
-          <Route path='/editpost' exact component={EditPost} />
-          <Route path='/detail' exact component={DetailPost} />
-          <Route path='/detailedit' exact component={DetailEditPost} />
+          <Route
+            exact
+            path='/editpost'
+            render={() => <EditPost post={post} userinfo={userinfo} />}
+          />
+          <Route
+            exact
+            path='/detailpost'
+            render={() => <DetailPost post={post} userinfo={userinfo} />}
+          />
+
           <Route path='/loginmodal' exact component={LoginModal} />
           <Route path='/chat' exact component={Chat} />
-          {/* <Route path='/mypage' exact component={MyPage}  /> */}
-          <Route 
-          exact 
-          path='/mypage'
-          render={() => <MyPage userinfo={userinfo} />}
+          {/* <Route path='/mypage' exact component={MyPage} /> */}
+          <Route
+            exact
+            path='/mypage'
+            render={() => <MyPage userinfo={userinfo} posts={posts} />}
           />
         </Switch>
         {/* <Footer /> */}

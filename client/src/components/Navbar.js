@@ -35,7 +35,7 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
           <Link to='/create'>글쓰기</Link>
           <Link to='/chat'>채팅하기</Link>
           {isLogin
-            ? <div onClick={logout}>로그아웃 </div> 
+            ? <><Link to='/mypage'>마이페이지</Link><div onClick={logout}>로그아웃 </div></>
             : <div onClick={OpenModal}>로그인</div>}
 
         </div>

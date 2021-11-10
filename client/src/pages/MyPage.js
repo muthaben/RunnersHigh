@@ -1,4 +1,5 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect, history } from 'react'
+import { useHistory } from 'react-router'
 import PostListCard from '../components/PostListCard'
 import '../stylesheet/mypage.css'
 import Avatar from '@mui/material/Avatar'
@@ -11,10 +12,10 @@ import Box from '@mui/material/Box'
 import { withRouter } from 'react-router-dom'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
-import { useDispatch,useSelector } from 'react-redux'
-import { setUserinfo } from '../redux/action'
-function MyPage ({userinfo}) {
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserinfo, setPosts } from '../redux/action'
 
+function MyPage ({ userinfo, posts }) {
   const dispatch = useDispatch()
   const [editProfile, setEditProfile] = useState(false)
   const editHandle = () => {
@@ -27,53 +28,62 @@ function MyPage ({userinfo}) {
     handleSubmit
   } = useForm({ mode: 'onChange' })
 
-const myPage = () => {
-  axios.get('http://localhost:80/users/userinfo' ,{
-  headers: {
-    Authorization: `Bearer ${localStorage.accessToken}`
+  const myPage = () => {
+    axios.get('http://localhost:80/users/userinfo', {
+      headers: {
+        Authorization: `Bearer ${localStorage.accessToken}`
+      }
+    })
+      .then((res) => {
+        dispatch(setUserinfo(res.data.data))
+      })
   }
-})
-  .then((res) => {
-    console.log(res.data.data)
-    dispatch(setUserinfo(res.data.data))
-  })
-}
-useEffect(() => myPage(), [])
 
-const [profileImage , setProfileImage] = useState('')
-const onChangeImage = (e) => {
-  setProfileImage(e.target.files[0])
-}
-
-
-const onProfileHandle = (data) => {
-  
-  const formData = new FormData()
-  formData.append('nickname' , data.nickname)
-  formData.append('password',data.password)
-  formData.append('userimage',profileImage)
-  for (const key of formData.keys()) {
-    console.log(key)
+  const myPostcard = () => {
+    axios.get(`http://localhost:80/posts/${userinfo.id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.accessToken}`
+      }
+    })
+      .then((res) => {
+        console.log(res.data.data)
+        dispatch(setPosts(res.data.data))
+      })
   }
-  for (const value of formData.values()) {
-    console.log(value)
+  const [profileImage, setProfileImage] = useState('')
+  const onChangeImage = (e) => {
+    setProfileImage(e.target.files[0])
   }
-  axios.patch('http://localhost:80/users/userinfo',formData ,{
-    headers: {
-      Authorization: `Bearer ${localStorage.accessToken}`
+  const history = useHistory()
+  useEffect(() => myPage, myPostcard, [])
+  // useEffect(() => myPostcard, [posts])
+  const onProfileHandle = (data) => {
+    const formData = new FormData()
+    formData.append('nickname', data.nickname)
+    formData.append('password', data.password)
+    formData.append('userimage', profileImage)
+    for (const key of formData.keys()) {
+      console.log(key)
     }
-  })
-  .then((data) => {
-    console.log(data.data)
-    dispatch(setUserinfo(data.data.data))
-    setEditProfile(!editProfile)
-  })
-}
+    for (const value of formData.values()) {
+      console.log(value)
+    }
+    axios.patch('http://localhost:80/users/userinfo', formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.accessToken}`
+      }
+    })
+      .then((data) => {
+        console.log(data.data)
+        dispatch(setUserinfo(data.data.data))
+        setEditProfile(!editProfile)
+      })
+  }
 
   return (
     <div className='mypage_container'>
       {editProfile
-        ? <form  onSubmit={handleSubmit(onProfileHandle)}  className='mypage_profile'>
+        ? <form onSubmit={handleSubmit(onProfileHandle)} className='mypage_profile'>
           <div className='mypage_profile1'>
             <div className='mypage_myimg'>
               <Avatar
@@ -81,7 +91,7 @@ const onProfileHandle = (data) => {
                 src={userinfo.image_url}
                 sx={{ width: 116, height: 116 }}
               />
-              <input 
+              <input
                 type='file'
                 accept='img/*'
                 name='userimage'
@@ -98,7 +108,7 @@ const onProfileHandle = (data) => {
               label='Nickname'
               name='nickname'
               {...register('nickname', {
-                required: '닉네임을 입력해주세요.',
+                required: '닉네임을 입력해주세요.'
                 // maxLength: {
                 //   value: 10,
                 //   message: '10자 미만으로 설정해주세요.'
@@ -139,7 +149,7 @@ const onProfileHandle = (data) => {
             />
             {errors.confirm_password && <p>{errors.confirm_password.message}</p>}
             <span className='mypage_confirmEdit'>
-              <button type='submit' >수정완료</button>
+              <button type='submit'>수정완료</button>
               <button>회원탈퇴</button>
             </span>
 
@@ -162,10 +172,14 @@ const onProfileHandle = (data) => {
           </div>
         </div>}
 
-      <div className='mypage_mypost' />
-      {/* <div className='mypage_nothing'>
-        게시글이 없습니다.
-      </div> */}
+      <div className='mypage_mypost'>
+
+        {posts.length === 0
+          ? <div className='mypage_nothing'>
+            게시글이 없습니다.
+          </div>
+          : posts.map((post) => <PostListCard post={post} key={post.id} />)}
+      </div>
     </div>
   )
 }

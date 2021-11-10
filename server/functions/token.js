@@ -3,7 +3,7 @@ const { sign, verify } = require('jsonwebtoken')
 
 module.exports = {
   signAccessToken: (data) => {
-    return sign(data, process.env.ACCESS_TOKEN, { expiresIn: '1h' })
+    return sign(data, process.env.ACCESS_TOKEN, { expiresIn: '24h' })
   },
   sendAccessToken: (res, accessToken) => {
     res.status(200).send({ data: { accessToken }, message: '로그인에 성공했습니다.' })
