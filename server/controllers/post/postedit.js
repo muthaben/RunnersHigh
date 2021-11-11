@@ -1,5 +1,5 @@
 // 게시물 수정
-const { post,user } = require('../../models')
+const { post, user } = require('../../models')
 const { isAuthorized } = require('../../functions/token')
 
 module.exports = async (req, res) => {
@@ -60,8 +60,7 @@ module.exports = async (req, res) => {
         }
       })
       res.status(201).send({ data: postInfo, message: '닉네임, 비밀번호 또는 프로필 이미지 변경에 성공했습니다' })
-    } 
-    else {
+    } else {
       res.status(422).send({ message: '변경할 정보가 필요합니다' })
     }
   } catch (error) {
