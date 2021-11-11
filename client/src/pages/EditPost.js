@@ -14,11 +14,11 @@ function EditPost ({ post, userinfo }) {
   const [getTitle, getSetTitle] = useState(post.title)
   const [getFileImage, getSetFileImage] = useState('')
   const [getText, getSetText] = useState(post.text)
-  const [getLocation, getSetLocation] = useState(post.loaction)
+  // const [getLocation, getSetLocation] = useState(post.loaction)
   const [getLatitude, getSetLatitude] = useState(post.latitude)
   const [getLongitude, getSetLongitude] = useState(post.longitude)
-  const [getDetailAddress, getSetDetailAddress] = useState(post.loaction)
-
+  const [getDetailAddress, getSetDetailAddress] = useState(post.location)
+console.log(post)
   const searchAddress = (a) => {
     getSetDetailAddress(a)
   }
@@ -102,32 +102,33 @@ function EditPost ({ post, userinfo }) {
               name='postimage'
               onChange={onFileImageHandle}
             />
-            <span>이미지선택</span>
-            <input type='checkbox' />
-            <span>기본이미지</span>
           </div>
           <div className='create_main_text'>
             <span>본문</span>
             <textarea placeholder='본문을 입력하세요' defaultValue={post.text} name='text' value={getText} onChange={onTextHandle} />
           </div>
           <div className='create_map'>
-            <span>코스</span>
+            <span>장소</span>
             <div className={getSearch ? 'search_on' : 'search_on off'}>
               <DaumAddress searchAddress={searchAddress} onClosesearchHandle={onClosesearchHandle} />
             </div>
-            {getDetailAddress ? `${getDetailAddress}` : null}
-            <button
+           
+            <div className='create_serch_container'>
+            <div
               type='button'
               className='create_main_search_btn'
               value='주소 검색'
               onClick={onsearchAddressHandle}
-            >장소선택
-            </button>
-
+            >만남장소 선택
+            </div>
+            <div className='getDetail_adress'>{ `${getDetailAddress}`}</div>
+            </div>
             <Map getLatitude={getLatitude} getLongitude={getLongitude} />
 
           </div>
-          <button type='button' className='create_button' onClick={editPost}>게시글 수정</button>
+          <div className='create_button_container'>
+          <div type='button' className='create_button' onClick={editPost}>게시글 수정</div>
+        </div>
         </form>
 
       </div>

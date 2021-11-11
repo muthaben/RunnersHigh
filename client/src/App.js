@@ -58,19 +58,17 @@ function App () {
           <Route
             exact
             path='/detailpost'
-            render={() => <DetailPost post={post} userinfo={userinfo} />}
+            render={() => <DetailPost post={post} userinfo={userinfo} isLogin={isLogin} OpenModal={OpenModal} />}
           />
 
           <Route path='/loginmodal' exact component={LoginModal} />
           <Route path='/chat' exact component={Chat} />
-          {/* <Route path='/mypage' exact component={MyPage} /> */}
           <Route
             exact
             path='/mypage'
             render={() => <MyPage userinfo={userinfo} posts={posts} />}
           />
         </Switch>
-        {/* <Footer /> */}
       </Router>
     </div>
   )
