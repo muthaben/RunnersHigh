@@ -54,7 +54,7 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
           <Link to='/' className='runners_High'>Runner's High</Link>
         </div>
         {/* <div className={getShow ? 'navbar_togglebutton' : 'navbar_link' }> */}
-        <div className='navbar_link'>
+        <div className={getShow ? 'navbar_link active' : 'navbar_link'}>
           <Link to='/main'>러너 모집</Link>
           {!isLogin 
           ? <><div onClick={OpenModal}> 글쓰기 </div>
@@ -71,10 +71,10 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
             ? <><Link to='/mypage'>마이페이지</Link><div onClick={logout}>로그아웃 </div></>
             : <div onClick={OpenModal}>로그인</div>}
         </div>
-        <div className={getShow ? 'navbar_togglebutton active' : 'navbar_togglebutton'}>
-        </div>
+        <div className='navbar_togglebutton'>
+     
         <i className='fas fa-bars' onClick={toggleHandle}></i>
-       
+        </div>
       </div>
     </div>
   )
