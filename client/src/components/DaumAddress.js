@@ -39,7 +39,7 @@ function DaumAdress ({ searchAddress, onClosesearchHandle }) {
         onComplete={handleComplete}
         autoClose={false}
         animation
-        style={{ width: '90vw', height: '60vh', maxWidth: '600px' }}
+        style={{ width: '90vw', height: '60vh', maxWidth: '425px' }}
       />
     </div>
   )

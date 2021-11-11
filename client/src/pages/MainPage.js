@@ -35,7 +35,7 @@ function MainPage () {
 
   const { posts } = postInfo
   const getPosts = () => {
-    axios.get('http://localhost:80/posts')
+    axios.get(`${process.env.REACT_APP_API_URL}/posts`)
       .then((data) => {
         dispatch(setPosts(data.data.data))
       })

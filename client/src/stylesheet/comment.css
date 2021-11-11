@@ -1,40 +1,80 @@
 .comment_container {
-  border-top: #d0e8fb 3px solid;
+  border-top: #d0e8fb 2px solid;
   height: 100%;
-  width: 90%;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
-.comment_container .comment_div {
-  display: flex;
-  align-self: center;
-  margin: 20px;
-}
-.comment_container .comment_div input {
-  width: 500px;
-  height: 50px;
-}
-.comment_container .comment_div button {
-  width: 100px;
-}
+
 .comment_container .comment_section {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-self: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-item-align: center;
+      align-self: center;
   height: 100%;
-  width: 100%;
-  border-top: #d0e8fb 3px solid;
+  width: 50%;
 }
+
 .comment_container .comment_section .comment_emoticon {
-  font-size: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
+
 .comment_container .comment_section .comment_emoticon span {
-  align-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   text-align: center;
-  font-size: 5px;
+  font-size: 15px;
   margin: 20px;
 }
+
 .comment_container .comment_section .comment_comment {
   height: 100%;
+  margin: 10px;
+  font-size: 30px;
+}
+
+.comment_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: center;
+      align-self: center;
   margin: 20px;
-}/*# sourceMappingURL=comment.css.map */
+  width: 100%;
+}
+
+.comment_div textarea {
+  width: 600px;
+  height: 50px;
+  padding: 1rem;
+  font-size: 15px;
+}
+
+.comment_div button {
+  width: 100px;
+}
+
+@media screen and (max-width: 500px) {
+  .comment_div {
+    width: 100%;
+  }
+  .comment_div textarea {
+    width: 100%;
+  }
+}
+/*# sourceMappingURL=comment.css.map */

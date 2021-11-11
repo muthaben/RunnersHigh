@@ -2,14 +2,32 @@ import '../stylesheet/Navbar.css'
 import { Link, useHistory } from 'react-router-dom'
 import { setUserinfo, setIsLogin } from '../redux/action'
 import { useDispatch } from 'react-redux'
-import { initialState } from '../redux/reducer/Initialstate'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import axios from 'axios'
 
 function Navbar ({ OpenModal, isLogin, userinfo }) {
   const dispatch = useDispatch()
   const history = useHistory()
+
+  gsap.registerPlugin(ScrollTrigger)
+  const showAnim = gsap.from('.navbar', {
+    yPercent: -100,
+    paused: true,
+    duration: 0.2
+  }).progress(1)
+
+  ScrollTrigger.create({
+    start: 'top top',
+    end: 99999,
+    onUpdate: (self) => {
+      self.direction === -1 ? showAnim.play() : showAnim.reverse()
+    }
+  })
+
+
   const logout = () => {
-    axios.post('http://localhost:80/users/logout', null, {
+    axios.post(`${process.env.REACT_APP_API_URL}/users/logout`, null, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`
       }
@@ -37,9 +55,7 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
           {isLogin
             ? <><Link to='/mypage'>마이페이지</Link><div onClick={logout}>로그아웃 </div></>
             : <div onClick={OpenModal}>로그인</div>}
-
         </div>
-
       </div>
     </div>
   )

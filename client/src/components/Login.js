@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 import { setUserinfo, setIsLogin } from '../redux/action'
 import { withRouter } from 'react-router-dom'
 
-window.Kakao.init('909ce02353d4c6d047b3af93cedeabc7')
+window.Kakao.init(process.env.REACT_APP_KAKAO_LOGIN)
 
 const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
   const {
@@ -21,7 +21,7 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
   const dispatch = useDispatch()
 
   const onSubmit = (data) => {
-    axios.post('http://localhost:80/users/login', {
+    axios.post(`${process.env.REACT_APP_API_URL}/users/login`, {
       email: data.email,
       password: data.password
     }, {
@@ -33,7 +33,7 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
         dispatch(setIsLogin(true))
 
         console.log(data)
-        axios.get('http://localhost:80/users/userinfo', {
+        axios.get(`${process.env.REACT_APP_API_URL}/users/userinfo`, {
           headers: {
             Authorization: `Bearer ${localStorage.accessToken}`
           }
@@ -58,7 +58,7 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
           url: '/v2/user/me',
           success: res => {
             const kakaoAccount = res.kakao_account
-            axios.post('http://localhost:80/users/login/kakao', {
+            axios.post(`${process.env.REACT_APP_API_URL}/users/login/kakao`, {
               email: kakaoAccount.email,
               nickname: kakaoAccount.profile.nickname,
               thumbnail_url: kakaoAccount.profile.thumbnail_image_url
