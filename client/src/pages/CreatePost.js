@@ -7,7 +7,7 @@ import Map from '../components/Map'
 import { setPost } from '../redux/action'
 import DaumAddress from '../components/DaumAddress'
 const { kakao } = window
-function CreatePost ({ match, history, post }) {
+function CreatePost ({ history, post }) {
   const dispatch = useDispatch()
   const [getSearch, getSetsearch] = useState(false)
   const [getTitle, getSetTitle] = useState('')
@@ -62,12 +62,12 @@ function CreatePost ({ match, history, post }) {
     formData.append('postimage', getFileImage)
     formData.append('location', getDetailAddress)
 
-    for (const key of formData.keys()) {
-      console.log(key)
-    }
-    for (const value of formData.values()) {
-      console.log(value)
-    }
+    // for (const key of formData.keys()) {
+    //   console.log(key)
+    // }
+    // for (const value of formData.values()) {
+    //   console.log(value)
+    // }
 
     if (
       getTitle === '' || getText === ''
@@ -105,20 +105,12 @@ function CreatePost ({ match, history, post }) {
           </div>
           <div className='create_checkbox'>
             <span>썸넬</span>
-            <label className='input_button' for='input_file'>
-              업로드<span></span>
-            </label>
             <input
-              id='input_file'
               type='file'
               accept='img/*'
               name='postimage'
               onChange={onFileImageHandle}
-              style={{display:'none'}}
             />
-            {/* <span>이미지선택</span>
-            <input type='checkbox' />
-            <span>기본이미지</span> */}
           </div>
           <div className='create_main_text'>
             <span>본문</span>

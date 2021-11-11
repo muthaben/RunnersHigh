@@ -57,22 +57,63 @@
 .container .runners_High {
   color: #307afb;
 }
-
+.navbar_togglebutton {
+  position: absolute;
+  right: 32px;
+  display: none;
+}
 @media screen and (max-width: 500px) {
+  // .navbar_togglebutton {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   height: 100%;
+  //   width: 100%;
+  // }
+
+  // .container .navbar_link {
+  //   display: none;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   background-color: red;
+  // }
   .navbar {
-    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    // width: 100%;
+    height: 30%;
   }
   .container {
-    flex-direction: column;
+    display: flex;
+    width: 100%;
     // align-items: flex-start;
+    height: 100%;
   }
   .container .navbar_link {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     width: 100%;
+    height: 100%;
+
     // margin-top: 100px;
-    padding: 8px 24px;
+    // padding: 8px 24px;
     // height: 100%;
+  }
+  .container__logo {
+    width: 40%;
+    height: 100%;
+    margin: 0;
+  }
+  .navbar_togglebutton {
+    position: absolute;
+    top: 10px;
+    display: flex;
+  }
+  .active {
+    width: 100%;
+    height: 100%;
+    background-color: rosybrown;
   }
 }

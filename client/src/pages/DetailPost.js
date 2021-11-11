@@ -7,7 +7,7 @@ import axios from 'axios'
 import { setPost } from '../redux/action/index'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-function DetailPost ({ post, userinfo }) {
+function DetailPost ({ post, userinfo , isLogin , OpenModal}) {
   const [comments, setComments] = useState([])
   const dispatch = useDispatch()
   const history = useHistory()
@@ -58,7 +58,7 @@ function DetailPost ({ post, userinfo }) {
         <div className='detail_text'>{post.text}</div>
      
       </div>
-      <CommentInput getComments={getComments} post={post} userinfo={userinfo} />
+      <CommentInput getComments={getComments} post={post} userinfo={userinfo} isLogin={isLogin}  OpenModal={OpenModal} />
       {comments.length === 0
         ? null
         : comments.map((comment) => <Comment comment={comment} key={comment.id} />)}

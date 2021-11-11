@@ -32,6 +32,11 @@ const ExpandMore = styled((props) => {
 export default function PostListCard ({ post }) {
   const [expanded, setExpanded] = React.useState(false)
 
+
+   let date = post.createdAt.slice(0,10);
+
+  // console.log(new Date());
+  // console.log('234234234',date.slice(0,10))
   const handleExpandClick = () => {
     setExpanded(!expanded)
   }
@@ -61,7 +66,7 @@ export default function PostListCard ({ post }) {
               </IconButton>
         }
             title='러닝메이트 모집 '
-            subheader={post.createdAt}
+            subheader={date}
           />
         </div>
         <div onClick={aboutDetailPost}>
