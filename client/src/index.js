@@ -13,7 +13,6 @@ import Reducer from './redux/reducer/index'
 import { PersistGate } from 'redux-persist/integration/react'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-
 import axios from 'axios'
 import { setIsLogin, setUserinfo } from './redux/action/index'
 
@@ -24,7 +23,7 @@ const persistConfig = {
 const persisted = persistReducer(persistConfig, Reducer)
 const store = createStore(persisted, compose(
   applyMiddleware(promiseMiddleware, ReduxThunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 )
 )
 const persistor = persistStore(store)

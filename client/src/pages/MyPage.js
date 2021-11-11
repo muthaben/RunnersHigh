@@ -29,7 +29,7 @@ function MyPage ({ userinfo, posts }) {
   } = useForm({ mode: 'onChange' })
 
   const myPage = () => {
-    axios.get('http://localhost:80/users/userinfo', {
+    axios.get(`${process.env.REACT_APP_API_URL}/users/userinfo`, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`
       }
@@ -40,7 +40,7 @@ function MyPage ({ userinfo, posts }) {
   }
 
   const myPostcard = () => {
-    axios.get(`http://localhost:80/posts/${userinfo.id}`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/posts/${userinfo.id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`
       }
@@ -68,7 +68,7 @@ function MyPage ({ userinfo, posts }) {
     for (const value of formData.values()) {
       console.log(value)
     }
-    axios.patch('http://localhost:80/users/userinfo', formData, {
+    axios.patch(`${process.env.REACT_APP_API_URL}/users/userinfo`, formData, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`
       }

@@ -2,41 +2,54 @@ $color-modalbackground-black: rgba(0, 0, 0, 0.3);
 $color-mainconcept-blue: #d0e8fb;
 $color-hovercolor-sky: #a5eaf6;
 $color-transparent-black: rgba(0, 0, 0, 0.4);
-
+$color-input-grey: rgba(95, 112, 169, 0.1);
 // 컬러
 
 // 이모티콘
-// @font-face {
-//   font-family: "HelloMornin";
-//   src: url("../fonts/Hello_Mornin.ttf") format("truetype");
-// }
 
 // 폰트
 
 // 버튼
+@mixin Nomal-button($width, $height) {
+  min-height: $height;
+  min-width: $width;
+  // margin-top: 50px;
+  // position: relative;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  // padding: 10px 30px;
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: white;
+  font-size: 18px;
+  border-radius: 30px;
+  background-color: #307afb;
+  box-shadow: -2px -2px 8px rgba(255, 255, 255, 1),
+    -2px -2px 12px rgba(255, 255, 255, 0.8),
+    inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.2);
+  &:hover {
+    cursor: pointer;
+    font-weight: 900;
+    box-shadow: inset -2px -2px 8px rgba(255, 255, 255, 1),
+      inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+      inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+      inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
 
-// @mixin font-face () {
-
-// }
-// @font-face {
-//   font-family: '#{$HelloMornin}' ;
-//   src: url('../fonts/#{Hello_Mornin}.ttf') format("truetype");
-// }
-// @mixin font-face($name, $file, $weight: noraml, $style: normal) {
-
-//   @font-face {
-
-//   font-family: "#{$name}";
-
-//   src: url('폰트 경로/#{$file}.woff') format('woff'),
-
-//   url('폰트 경로/#{$file}.ttf') format('truetype');
-
-//   font-weight: $weight;
-
-//   font-style: $style;
-
-//   }
+@mixin detail-button() {
+  width: 50px;
+  height: 50px;
+  background: red;
+}
+@mixin input-button() {
+  width: 50px;
+  height: 50px;
+  background: red;
+}
 
 //   @include font-face('설정할 폰트 이름', '폰트 파일 이름');
 

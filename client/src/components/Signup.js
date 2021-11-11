@@ -20,7 +20,7 @@ function Signup ({ ChangeSelect }) {
 
   const onSubmit = (data) => {
     console.log('111111', data.email)
-    axios.post('http://localhost:80/users/signup', {
+    axios.post(`${process.env.REACT_APP_API_URL}/users/signup`, {
       email: data.email,
       password: data.password,
       nickname: data.nickname

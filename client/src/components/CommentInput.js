@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-
+import '../stylesheet/comment.css'
 function CommentInput ({ getComments, userinfo, post }) {
 // comment: req.body.comment,
 // userId: accessTokenData.id,
@@ -11,7 +11,7 @@ function CommentInput ({ getComments, userinfo, post }) {
   }
 
   const onSubmit = () => {
-    axios.post(`http://localhost:80/posts/comment/${post.id}`, { comment: inputComment }, {
+    axios.post(`${process.env.REACT_APP_API_URL}/posts/comment/${post.id}`, { comment: inputComment }, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`,
         'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ function CommentInput ({ getComments, userinfo, post }) {
   return (
     <div>
       <div className='comment_div'>
-        <input className='comment_input' placeholder='댓글을 입력하세요' value={inputComment} onChange={writeComment} />
+        <textarea className='comment_input' placeholder='댓글을 입력하세요' value={inputComment} onChange={writeComment} />
         <button className='comment_submit' onClick={onSubmit}>입력</button>
       </div>
     </div>

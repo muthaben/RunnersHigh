@@ -22,24 +22,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+
   padding-bottom: 10px;
 }
 .runners_High_footer {
   font-family: "HelloMornin";
   font-size: 20px;
+  color: #307afb;
 }
 
 .footer .copyright {
   bottom: 0;
   position: absolute;
-  
 }
 .footer a {
   text-decoration: none;
   color: black;
-  &:hover{
-    color:$color-hovercolor-sky;
+  &:hover {
+    color: $color-hovercolor-sky;
   }
 }
 .footer_title {

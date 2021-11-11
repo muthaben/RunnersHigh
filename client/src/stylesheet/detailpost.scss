@@ -1,3 +1,4 @@
+@import "./variables/variables.scss";
 .detail_container {
   display: flex;
   padding-top: 9rem;
@@ -8,68 +9,107 @@
   width: 100%;
   // height: 100vh;
   // position: relative;
+  left: auto;
+  right: auto;
+  h1 {
+    font-size: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  span {
+    font-size: 20px;
+    font-weight: 700;
+  }
   .detail_span {
     display: flex;
-    width: 50%;
+    width: 100%;
     justify-content: space-between;
 
-    button {
-      margin: 2px;
-    }
+    // button {
+    //   margin: 2px;
+    // }
   }
 
   .detail_content {
     display: flex;
     flex-direction: column;
     align-items: center;
-
     height: 70%;
     width: 50%;
 
     .detail_image {
-      border: royalblue 1px solid;
-      height: 200px;
+      height: 20rem;
       width: 100%;
+      border-bottom: $color-input-grey 1px solid;
     }
     .detail_map {
-      border: black 1px solid;
-      height: 300px;
+      padding-top: 50px;
+      height: 30rem;
       width: 100%;
-      
     }
     .detail_text {
       width: 100%;
       height: 170px;
       text-align: start;
+      padding: 20px;
+      font-size: 30px;
+      font-weight: 300;
+      // background-color: $color-input-grey;
     }
   }
 }
 
-.comment_container {
-  border-top: #d0e8fb 3px solid;
+.button_button {
+  // margin: 20px;
+  width: 100%;
   height: 100%;
-  width: 90%;
-  display: flex;
-  flex-direction: column;
 
-  .comment_div {
+  .btn_btn {
     display: flex;
-    align-self: center;
-    margin: 20px;
-    input {
-      width: 500px;
-      height: 50px;
-    }
-    button {
-      width: 100px;
+    align-items: center;
+    justify-content: right;
+
+    // flex-wrap: wrap;
+    align-content: center;
+
+    div {
+      @include Nomal-button($width: 10%, $height: 5%);
+      justify-self: end;
+      // align-self: center;
+      margin: 2px;
+      width: 40px;
+      // height: 100%;
+      // font-size: 20px;
+      // letter-spacing: 10px;
+      // flex-wrap: wrap;
+      // border-radius: 0;
     }
   }
 }
-
-#map{
+#map {
   align-items: center;
-    align-self: center;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 500px) {
+  .detail_container {
+    width: 100%;
+    margin: 0;
+  }
+  .detail_content {
     width: 100%;
     height: 100%;
-    box-sizing: border-box;
+  }
+  .detail_span {
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  //   .btn_btn {
+  //     flex-wrap: wrap;
+  //   }
 }

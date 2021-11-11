@@ -76,7 +76,7 @@ function CreatePost ({ match, history, post }) {
     } else if (getDetailAddress === '') {
       alert('장소를 선택하세요.')
     } else {
-      axios.post('http://localhost:80/posts', formData, {
+      axios.post(`${process.env.REACT_APP_API_URL}/posts`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.accessToken}`,
           'Content-Type': 'multipart/form-data'
@@ -84,8 +84,7 @@ function CreatePost ({ match, history, post }) {
       })
         .then((data) => {
           console.log(data.data.data)
-
-          history.push('/')
+          history.push('/main')
           dispatch(setPost(data.data.data))
         })
         .catch((err) => {
@@ -106,42 +105,50 @@ function CreatePost ({ match, history, post }) {
           </div>
           <div className='create_checkbox'>
             <span>썸넬</span>
+            <label className='input_button' for='input_file'>
+              업로드<span></span>
+            </label>
             <input
+              id='input_file'
               type='file'
               accept='img/*'
               name='postimage'
               onChange={onFileImageHandle}
+              style={{display:'none'}}
             />
-            <span>이미지선택</span>
+            {/* <span>이미지선택</span>
             <input type='checkbox' />
-            <span>기본이미지</span>
+            <span>기본이미지</span> */}
           </div>
           <div className='create_main_text'>
             <span>본문</span>
             <textarea placeholder='본문을 입력하세요' name='text' value={getText} onChange={onTextHandle} />
           </div>
           <div className='create_map'>
-            <span>코스</span>
+            <span>장소</span>
             <div className={getSearch ? 'search_on' : 'search_on off'}>
               <DaumAddress searchAddress={searchAddress} onClosesearchHandle={onClosesearchHandle} />
             </div>
-            {getDetailAddress ? `${getDetailAddress}` : null}
-            <button
+            <div className='create_serch_container'>
+            <div
               type='button'
               className='create_main_search_btn'
               value='주소 검색'
               onClick={onsearchAddressHandle}
-            >장소선택
-            </button>
+            >만남장소 선택
+            </div>
+            <div className='getDetail_adress'>{getDetailAddress ? `${getDetailAddress}` : null}</div>
+            </div>
             {getLongitude && getLatitude
               ? (
                 <Map getLatitude={getLatitude} getLongitude={getLongitude} />
                 )
               : null}
           </div>
-          <button className='create_button' onClick={onSubmitHandle}>게시글 작성</button>
+          <div className='create_button_container'>
+          <div className='create_button' onClick={onSubmitHandle}>게시글 작성</div>
+          </div>
         </form>
-
       </div>
     </>
   )

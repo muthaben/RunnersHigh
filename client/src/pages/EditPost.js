@@ -68,7 +68,7 @@ function EditPost ({ post, userinfo }) {
     } else if (getDetailAddress === '') {
       alert('장소를 선택하세요.')
     } else {
-      axios.patch(`http://localhost:80/posts/${post.id}`, formData, {
+      axios.patch(`${process.env.REACT_APP_API_URL}/posts/${post.id}`, formData, {
         headers: {
           Authorization: `Bearer ${localStorage.accessToken}`,
           'Content-Type': 'multipart/form-data'
