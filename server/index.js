@@ -1,7 +1,15 @@
 require('dotenv').config()
 const express = require('express')
 const app = express()
+const http = require('http')
+const server = http.createServer(app)
 const cors = require('cors')
+const io = require('socket.io')(server, {
+  cors: {
+    origin: process.env.CORS_URL,
+    methods: ['GET', 'POST']
+  }
+})
 const cookieParser = require('cookie-parser')
 const PORT = 80
 const userRoute = require('./route/user')
@@ -16,6 +24,25 @@ app.use(
     credentials: true
   })
 )
+
+io.on('connection', (socket) => {
+  console.log('연결성공')
+
+  socket.on('joinRoom', ({ roomId: id }) => {
+    socket.join(`${id}`)
+    io.to(`${id}`).emit('joinRoom', `${id}번방으로 입장했습니다`)
+  })
+
+  socket.on('leaveRoom', ({ roomId: id }) => {
+    socket.leave(id)
+    io.to(id).emit('leaveRoom', `${id}번방에서 퇴장했습니다`)
+  })
+
+  socket.on('message', (info) => {
+    console.log(info)
+    io.to(info.roomId).emit('message', { chat: info.chat, roomId: info.roomId })
+  })
+})
 
 app.get('/', (req, res) => {
   res.send('Hello RunnersHigh')
