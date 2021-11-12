@@ -7,10 +7,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import axios from 'axios'
 import { useState } from 'react'
 
-function Navbar ({ OpenModal, isLogin, userinfo }) {
+function Navbar ({ OpenModal, isLogin, userinfo, setChatList }) {
   const dispatch = useDispatch()
   const history = useHistory()
-  const [getShow , getSetShow] = useState(false)
+  const [getShow, getSetShow] = useState(false)
   const toggleHandle = () => {
     getSetShow(!getShow)
   }
@@ -29,7 +29,6 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
     }
   })
 
-
   const logout = () => {
     axios.post(`${process.env.REACT_APP_API_URL}/users/logout`, null, {
       headers: {
@@ -46,6 +45,12 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
         if (err) console.log(err)
       })
   }
+  const chatInfo = () => {
+    axios.get(`${process.env.REACT_APP_API_URL}/chat/message`)
+      .then(data => {
+        setChatList(data.data.data)
+      })
+  }
 
   return (
     <div className='navbar'>
@@ -56,24 +61,22 @@ function Navbar ({ OpenModal, isLogin, userinfo }) {
         {/* <div className={getShow ? 'navbar_togglebutton' : 'navbar_link' }> */}
         <div className={getShow ? 'navbar_link active' : 'navbar_link'}>
           <Link to='/main'>러너 모집</Link>
-          {!isLogin 
-          ? <><div onClick={OpenModal}> 글쓰기 </div>
-           <div onClick={OpenModal}>채팅하기</div> 
-           </>
-           : 
-           <> 
-          <Link to='/create'>글쓰기</Link>
-           <Link to='/chat'>채팅하기</Link> 
-           </>
-           }
-        
+          {!isLogin
+            ? <><div onClick={OpenModal}> 글쓰기 </div>
+              <div onClick={OpenModal}>채팅하기</div>
+              </>
+            : <>
+              <Link to='/create'>글쓰기</Link>
+              <Link to='/chat' onClick={chatInfo}>채팅하기</Link>
+            </>}
+
           {isLogin
             ? <><Link to='/mypage'>마이페이지</Link><div onClick={logout}>로그아웃 </div></>
             : <div onClick={OpenModal}>로그인</div>}
         </div>
         <div className='navbar_togglebutton'>
-     
-        <i className='fas fa-bars' onClick={toggleHandle}></i>
+
+          <i className='fas fa-bars' onClick={toggleHandle} />
         </div>
       </div>
     </div>

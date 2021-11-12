@@ -30,9 +30,9 @@ function App () {
   const userInfo = useSelector((state) => state.userReducer)
   const { isLogin, userinfo } = userInfo
   const postInfo = useSelector((state) => state.postReducer)
-
+  const [chatList, setChatList] = useState([]) // axios get
   const { posts, post } = postInfo
-
+  console.log(chatList)
   return (
     <div className='page_container'>
       <Router>
@@ -45,6 +45,7 @@ function App () {
           OpenModal={OpenModal}
           isLogin={isLogin}
           userinfo={userinfo}
+          setChatList={setChatList}
         />
         <Switch>
           <Route path='/' exact component={Home} />
@@ -62,7 +63,7 @@ function App () {
           />
 
           <Route path='/loginmodal' exact component={LoginModal} />
-          <Route path='/chat' exact component={Chat} />
+          <Route path='/chat' exact render={() => <Chat chatList={chatList} setChatList={setChatList} userinfo={userinfo} />} />
           <Route
             exact
             path='/mypage'

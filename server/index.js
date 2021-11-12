@@ -29,7 +29,7 @@ io.on('connection', (socket) => {
   console.log('연결성공')
 
   socket.on('message', (info) => {
-    io.emit('message', { chat: info.chat })
+    io.emit('message', info)
   })
   // socket.on('joinRoom', ({ roomId: id }) => {
   //   socket.join(`${id}`)
@@ -50,6 +50,6 @@ app.use('/users', userRoute)
 app.use('/posts', postRoute)
 app.use('/chat', chatRoute)
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`이 서버는 ${PORT}에서 실행중입니다.`)
 })
