@@ -1,6 +1,43 @@
 import '../stylesheet/chat.scss'
-function Chat () {
- 
+import io from 'socket.io-client'
+import { useEffect, useRef, useState } from 'react'
+import axios from 'axios'
+function Chat ({ chatList, setChatList, userinfo }) {
+  console.log(userinfo)
+  const socketRef = useRef()
+  useEffect(() => {
+    socketRef.current = io.connect(`${process.env.REACT_APP_API_URL}`)
+    socketRef.current.on('message', (data) => {
+      console.log(data)
+      setChatList([...chatList, { chat: data.chat, user: { nickname: data.userinfo.nickname, image_url: data.userinfo.image_url } }])
+    })
+    return () => socketRef.current.disconnect()
+  }, [chatList])
+  const [input, setInput] = useState('')
+  const inputHandle = (e) => {
+    setInput(e.target.value)
+  }
+  const render = () => {
+    return (
+      chatList.map((el, idx) =>
+        <div className='chat_room_detail' key={idx}>
+          <div className='chat_room_image'>이미지<span> {el.user.nickname} </span></div>
+          <div className='chat_room_text'>{el.chat} </div>
+        </div>
+      )
+    )
+  }
+  const sendMsg = () => {
+    socketRef.current.emit('message', { chat: input, userinfo: userinfo })
+    axios.post(`${process.env.REACT_APP_API_URL}/chat/message`,
+      { chat: input },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.accessToken}`
+        }
+      })
+    setInput('')
+  }
   return (
     <div className='chat_container'>
       <div className='chat_container2'>
@@ -10,14 +47,11 @@ function Chat () {
         </div>
         <div className='chat_room'>
           <div className='chat_room_show'>
-            <div  className='chat_room_detail'>
-              <div className='chat_room_image'>이미지<span> 한성린 </span></div>
-              <div className='chat_room_text'>안녕하세요 참가하려고 합니다. </div>
-            </div>
+            {render()}
           </div>
           <div className='chat_room_post'>
-            <input placeholder='채팅을 시작하세요' />
-            <button>전송</button>
+            <input placeholder='채팅을 시작하세요' onChange={inputHandle} value={input} />
+            <button onClick={sendMsg}>전송</button>
           </div>
         </div>
       </div>
