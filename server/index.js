@@ -28,20 +28,18 @@ app.use(
 io.on('connection', (socket) => {
   console.log('연결성공')
 
-  socket.on('joinRoom', ({ roomId: id }) => {
-    socket.join(`${id}`)
-    io.to(`${id}`).emit('joinRoom', `${id}번방으로 입장했습니다`)
-  })
-
-  socket.on('leaveRoom', ({ roomId: id }) => {
-    socket.leave(id)
-    io.to(id).emit('leaveRoom', `${id}번방에서 퇴장했습니다`)
-  })
-
   socket.on('message', (info) => {
-    console.log(info)
-    io.to(info.roomId).emit('message', { chat: info.chat, roomId: info.roomId })
+    io.emit('message', { chat: info.chat })
   })
+  // socket.on('joinRoom', ({ roomId: id }) => {
+  //   socket.join(`${id}`)
+  //   io.to(`${id}`).emit('joinRoom', `${id}번방으로 입장했습니다`)
+  // })
+
+  // socket.on('leaveRoom', ({ roomId: id }) => {
+  //   socket.leave(id)
+  //   io.to(id).emit('leaveRoom', `${id}번방에서 퇴장했습니다`)
+  // })
 })
 
 app.get('/', (req, res) => {
