@@ -3,7 +3,7 @@ import io from 'socket.io-client'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import Avatar from '@mui/material/Avatar'
-function Chat ({ chatList, setChatList, userinfo }) {
+function Chat ({ chatList, setChatList, userinfo ,isLogin , OpenModal}) {
   const socketRef = useRef()
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -18,6 +18,7 @@ function Chat ({ chatList, setChatList, userinfo }) {
 
 
   useEffect(() => {
+   
     socketRef.current = io.connect(`${process.env.REACT_APP_API_URL}`)
     socketRef.current.on('message', (data) => {
       console.log(data)
@@ -30,25 +31,33 @@ function Chat ({ chatList, setChatList, userinfo }) {
     setInput(e.target.value)
   }
   const render = () => {
+ 
     return (
-      chatList.map((el, idx) =>
+
+         chatList.map((el, idx) =>
         <div className='chat_room_detail' key={idx}>
+          <div className='chat_message_container'>
            <div className='chat_room_image'>
            <Avatar
                 alt='Remy Sharp'
                 src={userinfo.image_url}
-                sx={{ width: 25, height: 25 }}
+                sx={{ width: 45, height: 50 }}
               />
          <span> {el.user.nickname} </span>
          </div>
-          <div className='chat_room_text'>{el.chat} </div>
+         <span className='chat_room_text'>{el.chat} </span>
           <div ref={messagesEndRef} ></div>
+          </div>
         </div>
-      )
+      ) 
     )
+    
   }
+ 
   const sendMsg = () => {
-   
+   if(!isLogin) {
+     OpenModal()
+   }
     socketRef.current.emit('message', { chat: input, userinfo: userinfo })
     axios.post(`${process.env.REACT_APP_API_URL}/chat/message`,
       { chat: input },
@@ -71,11 +80,10 @@ function Chat ({ chatList, setChatList, userinfo }) {
       <div  className='chat_container2'>
         <div className='chat_room'>
           <div  className='chat_room_show'>
-            {render()}
+           { render() }
           </div> 
-        
           <div className='chat_room_post'>
-            <input 
+          <input 
             type='text'
             placeholder='채팅을 시작하세요' 
             onChange={inputHandle} 
@@ -86,8 +94,7 @@ function Chat ({ chatList, setChatList, userinfo }) {
             <button type='submit' onClick={sendMsg}>전송</button>
           </div>
         </div>
-      </div>
-      
+      </div> 
     </div>
    
   )

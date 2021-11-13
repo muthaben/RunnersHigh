@@ -1,19 +1,20 @@
 import '../stylesheet/CreatePost.css'
-import React, { useState, useEffect, history } from 'react'
-import { useHistory, withRouter } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import { withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import axios from 'axios'
 import Map from '../components/Map'
 import { setPost } from '../redux/action'
 import DaumAddress from '../components/DaumAddress'
+// import LoginModal from '../components/LoginModal'
 const { kakao } = window
-function CreatePost ({ history, post }) {
+function CreatePost ({ history, post, OpenModal, isLogin }) {
   const dispatch = useDispatch()
   const [getSearch, getSetsearch] = useState(false)
   const [getTitle, getSetTitle] = useState('')
   const [getFileImage, getSetFileImage] = useState('')
   const [getText, getSetText] = useState('')
-  const [getLocation, getSetLocation] = useState('')
+  // const [getLocation, getSetLocation] = useState('')
   const [getLatitude, getSetLatitude] = useState(null)
   const [getLongitude, getSetLongitude] = useState(null)
   const [getDetailAddress, getSetDetailAddress] = useState('')
@@ -54,6 +55,9 @@ function CreatePost ({ history, post }) {
 
   const onSubmitHandle = (e) => {
     e.preventDefault()
+    if (!isLogin) {
+      OpenModal()
+    }
     const formData = new FormData()
     formData.append('title', getTitle)
     formData.append('text', getText)
@@ -122,14 +126,14 @@ function CreatePost ({ history, post }) {
               <DaumAddress searchAddress={searchAddress} onClosesearchHandle={onClosesearchHandle} />
             </div>
             <div className='create_serch_container'>
-            <div
-              type='button'
-              className='create_main_search_btn'
-              value='주소 검색'
-              onClick={onsearchAddressHandle}
-            >만남장소 선택
-            </div>
-            <div className='getDetail_adress'>{getDetailAddress ? `${getDetailAddress}` : null}</div>
+              <div
+                type='button'
+                className='create_main_search_btn'
+                value='주소 검색'
+                onClick={onsearchAddressHandle}
+              >만남장소 선택
+              </div>
+              <div className='getDetail_adress'>{getDetailAddress ? `${getDetailAddress}` : null}</div>
             </div>
             {getLongitude && getLatitude
               ? (
@@ -138,7 +142,7 @@ function CreatePost ({ history, post }) {
               : null}
           </div>
           <div className='create_button_container'>
-          <div className='create_button' onClick={onSubmitHandle}>게시글 작성</div>
+            <div className='create_button' onClick={onSubmitHandle}>게시글 작성</div>
           </div>
         </form>
       </div>

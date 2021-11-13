@@ -35,6 +35,7 @@ function MyPage ({ userinfo, posts }) {
       }
     })
       .then((res) => {
+        console.log('213123123',res)
         dispatch(setUserinfo(res.data.data))
       })
   }
@@ -46,7 +47,7 @@ function MyPage ({ userinfo, posts }) {
       }
     })
       .then((res) => {
-        console.log(res.data.data)
+        console.log('11111',res)
         dispatch(setPosts(res.data.data))
       })
   }
@@ -55,7 +56,8 @@ function MyPage ({ userinfo, posts }) {
     setProfileImage(e.target.files[0])
   }
   const history = useHistory()
-  useEffect(() => myPage, myPostcard, [])
+  useEffect(() => myPage(), [])
+  useEffect(() =>  myPostcard(), [])
   // useEffect(() => myPostcard, [posts])
   const onProfileHandle = (data) => {
     const formData = new FormData()
@@ -74,7 +76,7 @@ function MyPage ({ userinfo, posts }) {
       }
     })
       .then((data) => {
-        console.log(data.data)
+        console.log(data)
         dispatch(setUserinfo(data.data.data))
         setEditProfile(!editProfile)
       })
