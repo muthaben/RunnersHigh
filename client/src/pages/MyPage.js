@@ -62,12 +62,12 @@ function MyPage ({ userinfo, posts }) {
     formData.append('nickname', data.nickname)
     formData.append('password', data.password)
     formData.append('userimage', profileImage)
-    for (const key of formData.keys()) {
-      console.log(key)
-    }
-    for (const value of formData.values()) {
-      console.log(value)
-    }
+    // for (const key of formData.keys()) {
+    //   console.log(key)
+    // }
+    // for (const value of formData.values()) {
+    //   console.log(value)
+    // }
     axios.patch(`${process.env.REACT_APP_API_URL}/users/userinfo`, formData, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`

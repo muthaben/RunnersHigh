@@ -51,7 +51,7 @@ function Home () {
     })
   })
   return (
-    <div>
+    <div className='home_div'>
       {/* <h1>Home</h1> */}
       <LandingPage1 />
       <LandingPage2 />

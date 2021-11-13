@@ -4,7 +4,7 @@ import postReducer from './post_Reducer'
 
 const rootReducer = combineReducers({
   userReducer,
-  postReducer
+  postReducer,
 })
 
 export default rootReducer
