@@ -2,9 +2,21 @@ import '../stylesheet/chat.scss'
 import io from 'socket.io-client'
 import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
+import Avatar from '@mui/material/Avatar'
 function Chat ({ chatList, setChatList, userinfo }) {
-  console.log(userinfo)
   const socketRef = useRef()
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  //  console.log(scrollToBottom())
+  useEffect(() => {
+    scrollToBottom()
+  }, [chatList]);
+
+
   useEffect(() => {
     socketRef.current = io.connect(`${process.env.REACT_APP_API_URL}`)
     socketRef.current.on('message', (data) => {
@@ -21,13 +33,22 @@ function Chat ({ chatList, setChatList, userinfo }) {
     return (
       chatList.map((el, idx) =>
         <div className='chat_room_detail' key={idx}>
-          <div className='chat_room_image'>이미지<span> {el.user.nickname} </span></div>
+           <div className='chat_room_image'>
+           <Avatar
+                alt='Remy Sharp'
+                src={userinfo.image_url}
+                sx={{ width: 25, height: 25 }}
+              />
+         <span> {el.user.nickname} </span>
+         </div>
           <div className='chat_room_text'>{el.chat} </div>
+          <div ref={messagesEndRef} ></div>
         </div>
       )
     )
   }
   const sendMsg = () => {
+   
     socketRef.current.emit('message', { chat: input, userinfo: userinfo })
     axios.post(`${process.env.REACT_APP_API_URL}/chat/message`,
       { chat: input },
@@ -38,24 +59,37 @@ function Chat ({ chatList, setChatList, userinfo }) {
       })
     setInput('')
   }
+  const enterClick= (e) => {
+    if(e.key === 'Enter') {
+      sendMsg()
+    }
+  }
+
   return (
+  
     <div className='chat_container'>
-      <div className='chat_container2'>
-        <div className='chat_sidebar'>
-          <div> 이미지 </div>
-          <div> 이미지 </div>
-        </div>
+      <div  className='chat_container2'>
         <div className='chat_room'>
-          <div className='chat_room_show'>
+          <div  className='chat_room_show'>
             {render()}
-          </div>
+          </div> 
+        
           <div className='chat_room_post'>
-            <input placeholder='채팅을 시작하세요' onChange={inputHandle} value={input} />
-            <button onClick={sendMsg}>전송</button>
+            <input 
+            type='text'
+            placeholder='채팅을 시작하세요' 
+            onChange={inputHandle} 
+            value={input} 
+            onFocus
+            onKeyPress={enterClick}
+            />
+            <button type='submit' onClick={sendMsg}>전송</button>
           </div>
         </div>
       </div>
+      
     </div>
+   
   )
 }
 
