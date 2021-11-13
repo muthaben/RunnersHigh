@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import '../stylesheet/comment.css'
-function CommentInput ({ getComments, userinfo, post ,isLogin , OpenModal }) {
+function CommentInput ({ getComments, userinfo, post, isLogin, OpenModal }) {
 // comment: req.body.comment,
 // userId: accessTokenData.id,
 // postId: req.params.postid
@@ -11,7 +11,7 @@ function CommentInput ({ getComments, userinfo, post ,isLogin , OpenModal }) {
   }
 
   const onSubmit = () => {
-    if(!isLogin) {
+    if (!isLogin) {
       OpenModal()
     }
     axios.post(`${process.env.REACT_APP_API_URL}/posts/comment/${post.id}`, { comment: inputComment }, {

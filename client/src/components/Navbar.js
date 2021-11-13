@@ -61,15 +61,8 @@ function Navbar ({ OpenModal, isLogin, userinfo, setChatList }) {
         {/* <div className={getShow ? 'navbar_togglebutton' : 'navbar_link' }> */}
         <div className={getShow ? 'navbar_link active' : 'navbar_link'}>
           <Link to='/main'>러너 모집</Link>
-          {!isLogin
-            ? <><div onClick={OpenModal}> 글쓰기 </div>
-              <div onClick={OpenModal}>채팅하기</div>
-              </>
-            : <>
-              <Link to='/create'>글쓰기</Link>
-              <Link to='/chat' onClick={chatInfo}>채팅하기</Link>
-            </>}
-
+          <Link to='/create'>글쓰기</Link>
+          <Link to='/chat' onClick={chatInfo}>채팅하기</Link>
           {isLogin
             ? <><Link to='/mypage'>마이페이지</Link><div onClick={logout}>로그아웃 </div></>
             : <div onClick={OpenModal}>로그인</div>}
