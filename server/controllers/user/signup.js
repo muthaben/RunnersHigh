@@ -20,7 +20,8 @@ module.exports = async (req, res) => {
         email: email,
         password: password,
         nickname: nickname,
-        social_type: 'local'
+        social_type: 'local',
+        image_url: 'https://bucket-runners.s3.ap-northeast-2.amazonaws.com/1636790124906.jpeg'
       })
       res.status(201).send({ message: '회원가입 성공' })
     } else {
