@@ -20,7 +20,7 @@ function Chat ({ chatList, setChatList, userinfo, isLogin, OpenModal }) {
     socketRef.current = io.connect(`${process.env.REACT_APP_API_URL}`)
     socketRef.current.on('message', (data) => {
       console.log(data)
-      setChatList([...chatList, { chat: data.chat, user: { nickname: data.userinfo.nickname, image_url: data.userinfo.image_url } }])
+      setChatList([...chatList, { chat: data.chat, user: { nickname: data.userinfo.nickname, image_url: data.userinfo.image_url, id: data.userinfo.id } }])
     })
     return () => socketRef.current.disconnect()
   }, [chatList])
@@ -33,14 +33,14 @@ function Chat ({ chatList, setChatList, userinfo, isLogin, OpenModal }) {
 
       chatList.map((el, idx) =>
         <div
-          className={el.user.nickname === userinfo.nickname
+          className={el.user.id === userinfo.id
             ? 'chat_room_detail_mine '
             : 'chat_room_detail'}
           key={idx}
 
         >
           <div className='chat_message_container'>
-            {el.user.nickname === userinfo.nickname
+            {el.user.id === userinfo.id
               ? <>
                 <div className='test_mine'>
                   <div className='chat_room_nickname_mine'> {el.user.nickname} </div>
