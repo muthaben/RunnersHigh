@@ -65,8 +65,18 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
             }, {
               withCredentials: true
             })
-            // console.log('====', kakaoAccount.email)
-            // console.log('====', kakaoAccount.profile.nickname, kakaoAccount.profile.thumbnail_image_url)
+              .then((data) => {
+                localStorage.setItem('accessToken', data.data.data.accessToken)
+                dispatch(setIsLogin(true))
+                axios.get(`${process.env.REACT_APP_API_URL}/users/userinfo`, {
+                  headers: {
+                    Authorization: `Bearer ${localStorage.accessToken}`
+                  }
+                })
+                  .then((data) => {
+                    dispatch(setUserinfo(data.data.data))
+                  })
+              })
           }
         })
       }
