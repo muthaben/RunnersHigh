@@ -1,33 +1,39 @@
+@import '../stylesheet/variables/variables.scss';
 .comment_container {
-  border-top: #d0e8fb 2px solid;
+  border-top: $color-input-grey 2px solid;
+
   height: 100%;
   width: 50%;
   display: flex;
-  flex-direction: column;
+  margin-bottom: 10px;
+  padding-top: 10px;
 
   .comment_section {
     display: flex;
-    flex-direction: column;
+    
     align-self: center;
     height: 100%;
-    width: 50%;
+    width: 100%;
     // border-top: #d0e8fb 3px solid;
     // padding-bottom: 95px;
 
     .comment_emoticon {
       display: flex;
+      flex-wrap: wrap;
       span {
         align-content: center;
         align-self: center;
         text-align: center;
         font-size: 15px;
-        margin: 20px;
+        margin: 10px;
+        
       }
     }
     .comment_comment {
       height: 100%;
+      width:100% ;
       margin: 10px;
-      font-size: 30px;
+      font-size: 20px;
     }
   }
 }
@@ -37,8 +43,8 @@
   margin: 20px;
   width: 100%;
   textarea {
-    width: 600px;
-    height: 50px;
+    width: 40rem;
+    height: 3rem;
     padding: 1rem;
     font-size: 15px;
   }
@@ -47,7 +53,10 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
+  .comment_container {
+    width: 100%;
+  }
   .comment_div {
     width: 100%;
     textarea {

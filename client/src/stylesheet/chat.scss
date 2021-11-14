@@ -12,7 +12,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+ 
 }
+
+
+
 .chat_container2 {
   border: solid 3px $color-mainconcept-blue;
   border-radius: 10px;
@@ -36,6 +40,11 @@
   display: flex;
   // flex-direction: column;
   justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.chat_message_container_mine{
+
 }
 .chat_room_detail {
   display: flex;
@@ -43,11 +52,16 @@
 
   // overflow-y: auto;
 }
+.chat_room_detail_mine{
+  display: flex;
+  justify-content: flex-end;
+}
 
 .chat_room_image {
   display: flex;
   flex-direction: column;
   margin: 5px;
+  align-items: flex-start;
   // background-color: red;
   // width: auto;
   // height: 50px;
@@ -56,11 +70,50 @@
     margin: 2px;
   }
 }
-
+.chat_room_image_mine{
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  align-items: flex-end;
+  // background-color: red;
+  // width: auto;
+  // height: 50px;
+  span {
+    font-size: 20px;
+    margin: 2px;
+  }
+}
+.test{
+  display: flex;
+  flex-direction: column;
+}
+.test_mine{
+  display: flex;
+  flex-direction: column;
+}
+.chat_room_nickname{
+  text-align: left;
+}
+.chat_room_nickname_mine{
+  text-align: right;
+}
 .chat_room_text {
   // margin-left: 45px;
-  margin-top: 20px;
+  margin-top: 5px;
   font-size: 20px;
+  height: fit-content;
+  background: #ceebff;
+  border-radius: 10px;
+  padding: 5px;
+
+}
+.chat_room_text_mine{
+  margin-top: 5px;
+  font-size: 20px;
+  height: fit-content;
+  background: rgb(255, 243, 191);
+  border-radius: 10px;
+  padding: 5px;
 }
 .chat_room_post {
   height: 60px;

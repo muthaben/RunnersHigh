@@ -6,14 +6,14 @@ function comment ({ comment }) {
   return (
     <div className='comment_container'>
       <section className='comment_section'>
+        <Avatar
+          src={comment.user.image_url}
+          sx={{ width: 40, height: 40 }}
+        />
         <div className='comment_emoticon'>
-          <Avatar 
-          src={comment.user.image_url} 
-          sx={{ width: 80, height: 80 }}
-          />
           <span>{comment.user.nickname}</span>
+          <div className='comment_comment'>{comment.comment}~</div>
         </div>
-        <div className='comment_comment'>{comment.comment}~</div>
       </section>
     </div>
   )
