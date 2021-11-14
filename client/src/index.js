@@ -15,7 +15,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import axios from 'axios'
 import { setIsLogin, setUserinfo } from './redux/action/index'
-
+import { useHistory } from 'react-router'
 const persistConfig = {
   key: 'root',
   storage: storage
@@ -29,6 +29,7 @@ const store = createStore(persisted, compose(
 const persistor = persistStore(store)
 
 const { dispatch } = store
+const history = useHistory
 function axiosSetUp () {
   axios.defaults.withCredentials = true
   axios.interceptors.response.use(
@@ -48,7 +49,7 @@ function axiosSetUp () {
         dispatch(setUserinfo({}))
         localStorage.clear()
         // alert('')
-        // history.push('/')
+        // history.push('/main')
       }
 
       return Promise.reject(error)

@@ -32,8 +32,7 @@ const ExpandMore = styled((props) => {
 export default function PostListCard ({ post }) {
   const [expanded, setExpanded] = React.useState(false)
 
-
-   let date = post.createdAt.slice(0,10);
+  const date = post.createdAt.slice(0, 10)
 
   // console.log(new Date());
   // console.log('234234234',date.slice(0,10))
@@ -56,16 +55,15 @@ export default function PostListCard ({ post }) {
         <div onClick={aboutDetailPost}>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label='your image'>
-                R
-              </Avatar>
+              <Avatar sx={{ bgcolor: red[500], width: 60, height: 60 }} aria-label='your image' src={post.user.image_url} />
+
         }
             action={
               <IconButton aria-label='settings'>
                 <MoreVertIcon />
               </IconButton>
         }
-            title='러닝메이트 모집 '
+            title={post.user.nickname}
             subheader={date}
           />
         </div>
@@ -85,7 +83,9 @@ export default function PostListCard ({ post }) {
         <CardActions disableSpacing>
           <IconButton aria-label='add to favorites'>
             <FavoriteIcon />
+
           </IconButton>
+          <div>만남장소 : {post.location}</div>
 
           <ExpandMore
             expand={expanded}

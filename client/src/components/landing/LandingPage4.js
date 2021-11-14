@@ -1,5 +1,5 @@
 import React from 'react'
-
+import '../../stylesheet/landing.css'
 const LandingPage4 = () => {
   return (
     <div className='landing4_container'>

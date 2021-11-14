@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../../stylesheet/landing.css'
 const LandingPage5 = () => {
   return (
     <div className='landing5_wrap'>
