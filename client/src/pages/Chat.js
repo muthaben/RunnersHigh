@@ -60,7 +60,7 @@ function Chat ({ chatList, setChatList, userinfo, isLogin, OpenModal }) {
                 <div className='chat_room_image'>
                   <Avatar
                     alt='Remy Sharp'
-                    src={userinfo.image_url}
+                    src={el.user.image_url}
                     sx={{ width: 45, height: 50 }}
                   />
                 </div>
