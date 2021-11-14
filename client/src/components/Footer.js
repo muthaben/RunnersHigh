@@ -9,20 +9,20 @@ function Footer () {
         </div>
         <div className='navbar_link_footer_ourservice'>
           <div className='footer_title'>Our service</div>
-          <a href='' target='_blank'>Wiki</a>
-          <a href='' target='_blank'>Github</a>
+          <a href='https://github.com/codestates/RunnersHigh/wiki' target='_blank' rel="noreferrer">Wiki</a>
+          <a href='https://github.com/codestates/RunnersHigh' target='_blank' rel="noreferrer">Github</a>
         </div>
         <div className='navbar_link_footer_adress'>
           <div className='footer_title'>Github Adress</div>
           <span>
 
-            <a href='' target='_blank'>김형재</a>
-            <a href='' target='_blank'>김왕선</a>
+            <a href='https://github.com/kimbro97' target='_blank' rel="noreferrer">김형재</a>
+            <a href='https://github.com/muthaben' target='_blank' rel="noreferrer">김왕선</a>
           </span>
           <span>
 
-            <a href='' target='_blank'>한성린</a>
-            <a href='' target='_blank'>이규황</a>
+            <a href='https://github.com/Sungrinhan' target='_blank' rel="noreferrer">한성린</a>
+            <a href='https://github.com/gyuhwanglee' target='_blank' rel="noreferrer">이규황</a>
           </span>
         </div>
 

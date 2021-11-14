@@ -22,7 +22,6 @@ function CommentInput ({ getComments, userinfo, post, isLogin, OpenModal }) {
       }
     })
       .then((data) => {
-        console.log(data)
         getComments()
         setInputComment('')
       })

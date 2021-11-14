@@ -32,7 +32,6 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
         //  console.log(data)
         dispatch(setIsLogin(true))
 
-        console.log(data)
         axios.get(`${process.env.REACT_APP_API_URL}/users/userinfo`, {
           headers: {
             Authorization: `Bearer ${localStorage.accessToken}`
@@ -53,7 +52,6 @@ const Login = ({ ChangeSelect, OpenModal, isLogin }) => {
     await window.Kakao.Auth.login({
       scope: 'profile_nickname, profile_image, account_email',
       success: (authObj) => {
-        console.log(authObj)
         window.Kakao.API.request({
           url: '/v2/user/me',
           success: res => {
