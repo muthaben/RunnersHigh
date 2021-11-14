@@ -35,7 +35,6 @@ function MyPage ({ userinfo, posts }) {
       }
     })
       .then((res) => {
-        console.log('213123123',res)
         dispatch(setUserinfo(res.data.data))
       })
   }
@@ -47,7 +46,6 @@ function MyPage ({ userinfo, posts }) {
       }
     })
       .then((res) => {
-        console.log('11111',res)
         dispatch(setPosts(res.data.data))
       })
   }
@@ -57,7 +55,7 @@ function MyPage ({ userinfo, posts }) {
   }
   const history = useHistory()
   useEffect(() => myPage(), [])
-  useEffect(() =>  myPostcard(), [])
+  useEffect(() => myPostcard(), [])
   // useEffect(() => myPostcard, [posts])
   const onProfileHandle = (data) => {
     const formData = new FormData()
@@ -76,7 +74,6 @@ function MyPage ({ userinfo, posts }) {
       }
     })
       .then((data) => {
-        console.log(data)
         dispatch(setUserinfo(data.data.data))
         setEditProfile(!editProfile)
       })
@@ -156,7 +153,7 @@ function MyPage ({ userinfo, posts }) {
             </span>
 
           </div>
-        </form>
+          </form>
         : <div className='mypage_profile'>
           <div className='mypage_profile1'>
             <div className='mypage_myimg'>
@@ -172,14 +169,14 @@ function MyPage ({ userinfo, posts }) {
             <div className='mypage_email'>{userinfo.email}</div>
             <button className='mypage_editbutton' onClick={editHandle}>프로필수정</button>
           </div>
-        </div>}
+          </div>}
 
       <div className='mypage_mypost'>
 
         {posts.length === 0
           ? <div className='mypage_nothing'>
             게시글이 없습니다.
-          </div>
+            </div>
           : posts.map((post) => <PostListCard post={post} key={post.id} />)}
       </div>
     </div>

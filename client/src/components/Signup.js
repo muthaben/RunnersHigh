@@ -19,7 +19,6 @@ function Signup ({ ChangeSelect }) {
   const dispatch = useDispatch()
 
   const onSubmit = (data) => {
-    console.log('111111', data.email)
     axios.post(`${process.env.REACT_APP_API_URL}/users/signup`, {
       email: data.email,
       password: data.password,
@@ -37,7 +36,7 @@ function Signup ({ ChangeSelect }) {
         }
       })
   }
-  console.log(watch('email'))
+
   return (
     <div className='signup_container'>
       <h3 className='signup_title'>

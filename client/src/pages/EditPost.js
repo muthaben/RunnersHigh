@@ -18,7 +18,7 @@ function EditPost ({ post, userinfo }) {
   const [getLatitude, getSetLatitude] = useState(post.latitude)
   const [getLongitude, getSetLongitude] = useState(post.longitude)
   const [getDetailAddress, getSetDetailAddress] = useState(post.location)
-console.log(post)
+
   const searchAddress = (a) => {
     getSetDetailAddress(a)
   }
@@ -76,7 +76,6 @@ console.log(post)
         }
       })
         .then((data) => {
-          console.log(data)
           dispatch(setPost(data.data.data))
           history.goBack()
         })
@@ -112,23 +111,23 @@ console.log(post)
             <div className={getSearch ? 'search_on' : 'search_on off'}>
               <DaumAddress searchAddress={searchAddress} onClosesearchHandle={onClosesearchHandle} />
             </div>
-           
+
             <div className='create_serch_container'>
-            <div
+              <div
               type='button'
               className='create_main_search_btn'
               value='주소 검색'
               onClick={onsearchAddressHandle}
             >만남장소 선택
             </div>
-            <div className='getDetail_adress'>{ `${getDetailAddress}`}</div>
+              <div className='getDetail_adress'>{`${getDetailAddress}`}</div>
             </div>
             <Map getLatitude={getLatitude} getLongitude={getLongitude} />
 
           </div>
           <div className='create_button_container'>
-          <div type='button' className='create_button' onClick={editPost}>게시글 수정</div>
-        </div>
+            <div type='button' className='create_button' onClick={editPost}>게시글 수정</div>
+          </div>
         </form>
 
       </div>

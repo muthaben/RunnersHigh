@@ -87,7 +87,6 @@ function CreatePost ({ history, post, OpenModal, isLogin }) {
         }
       })
         .then((data) => {
-          console.log(data.data.data)
           history.push('/main')
           dispatch(setPost(data.data.data))
         })
