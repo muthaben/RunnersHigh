@@ -13,8 +13,6 @@ $color-input-grey: rgba(95, 112, 169, 0.1);
 @mixin Nomal-button($width, $height) {
   min-height: $height;
   min-width: $width;
-  // margin-top: 50px;
-  // position: relative;
   align-self: center;
   align-items: center;
   justify-content: center;
