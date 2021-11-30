@@ -8,7 +8,7 @@ import CommentInput from '../components/CommentInput'
 import axios from 'axios'
 
 import { useHistory } from 'react-router'
-function DetailPost({ post, userinfo, isLogin, OpenModal }) {
+function DetailPost ({ post, userinfo, isLogin, OpenModal }) {
   const [comments, setComments] = useState([])
   const history = useHistory()
   const date = post.createdAt.slice(0, 10)
@@ -38,11 +38,12 @@ function DetailPost({ post, userinfo, isLogin, OpenModal }) {
   }
 
   const chattingHandle = () => {
-    axios.post(`${process.env.REACT_APP_API_URL}/chat/room`, { pairId: post.user.userId }, {
+    axios.post(`${process.env.REACT_APP_API_URL}/chat/room`, { pairId: post.userId }, {
       headers: {
         Authorization: `Bearer ${localStorage.accessToken}`
       }
-    }).then((data) => console.log(data))
+    })
+      .then((data) => history.push('/chat'))
   }
 
   return (
@@ -57,7 +58,9 @@ function DetailPost({ post, userinfo, isLogin, OpenModal }) {
           <div className='detail_span_block'>
             <Avatar sx={{ bgcolor: red[500] }} aria-label='your image' src={post.user.image_url} />
             <span>{post.user.nickname}</span>
-            <i className='fas fa-comment-dots' onClick={chattingHandle} />
+            {post.userId === userinfo.id
+              ? null
+              : <i className='fas fa-comment-dots' onClick={chattingHandle} />}
           </div>
           <span>{date}</span>
         </div>
